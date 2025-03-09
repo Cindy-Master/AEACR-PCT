@@ -74,7 +74,7 @@ namespace Cindy_Master.PCT.Ui
             }
 
             bool enableEdenOpener = PCTSettings.Instance.Enable100EdenOpener;
-            if (ImGui.Checkbox("3gcd 起手", ref enableEdenOpener))
+            if (ImGui.Checkbox("绝伊甸起手", ref enableEdenOpener))
             {
                 if (enableEdenOpener)
                 {
@@ -252,7 +252,7 @@ namespace Cindy_Master.PCT.Ui
             ImGui.BeginGroup(); // Start group to keep checkbox and button on the same line
 
             // Checkbox to enable or disable QT reset
-            bool resetQT = false;  // Initialize a variable to hold checkbox state
+            bool resetQT = PCTSettings.Instance.QT重置;  // Initialize a variable to hold checkbox state
             if (ImGui.Checkbox("重新进入战斗重置QT", ref resetQT))
             {
                 PCTSettings.Instance.QT重置 = resetQT;

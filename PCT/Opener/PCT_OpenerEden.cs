@@ -41,15 +41,15 @@ namespace Cindy_Master.PCT.Opener
 
             _steps.Add(new OpenerStep(
 
-
+               Helper.爆发药(),
+               new Spell(PCT_Data.Spells.动物构想1, SpellTargetType.Target),
                new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target)
 
            ));
 
             _steps.Add(new OpenerStep(
-                Helper.白神圣(),
-                Helper.爆发药(),
-                new Spell(PCT_Data.Spells.动物构想1, SpellTargetType.Target)
+
+
             ));
 
 
@@ -58,25 +58,26 @@ namespace Cindy_Master.PCT.Opener
             {
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.动物彩绘2, SpellTargetType.Target),
+
                     new Spell(PCT_Data.Spells.星空, SpellTargetType.Self) { WaitServerAcq = false }
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.锤1, SpellTargetType.Target),
-                    new Spell(PCT_Data.Spells.反转, SpellTargetType.Target),
-                    new Spell(PCT_Data.Spells.蛋, SpellTargetType.Target)
+                    new Spell(PCT_Data.Spells.锤1, SpellTargetType.Target)
+                    //new Spell(PCT_Data.Spells.昏乱, SpellTargetType.Target)
 
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.冰结, SpellTargetType.Target)
+                    new Spell(PCT_Data.Spells.火炎, SpellTargetType.Target)
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.飞石, SpellTargetType.Target)
+                    new Spell(PCT_Data.Spells.疾风, SpellTargetType.Target)
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.闪雷, SpellTargetType.Target)
+                    new Spell(PCT_Data.Spells.流水, SpellTargetType.Target)
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.天星, SpellTargetType.Target)
+                    new Spell(PCT_Data.Spells.天星, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.反转, SpellTargetType.Target)
                 ),
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.锤2, SpellTargetType.Target),
@@ -95,7 +96,11 @@ namespace Cindy_Master.PCT.Opener
                 ),
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.动物彩绘3, SpellTargetType.Target),
-                    new Spell(PCT_Data.Spells.动物构想3, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.动物构想3, SpellTargetType.Target)
+
+                ),
+                new OpenerStep(
+                    new Spell(PCT_Data.Spells.冰结, SpellTargetType.Target),
                     new Spell(PCT_Data.Spells.即刻, SpellTargetType.Self)
                 ),
                 new OpenerStep(
