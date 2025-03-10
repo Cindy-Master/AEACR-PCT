@@ -31,7 +31,7 @@ public class PCT_BaseGCD_长 : ISlotResolver
         {
             return -2;
         }
-        if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.长Buff) == 2 && PictomancerRotationEntry.QT.GetQt(QTKey.测112) && Core.Me.HasAura(PCT_Data.Buffs.绿黄))
+        if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.长Buff) == 2 && Core.Me.HasAura(PCT_Data.Buffs.绿黄) && PictomancerRotationEntry.QT.GetQt(QTKey.测112) && Core.Me.HasAura(PCT_Data.Buffs.绿黄))
         {
             return -3;
         }
