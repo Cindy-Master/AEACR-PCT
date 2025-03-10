@@ -10,22 +10,19 @@
 
     <ItemGroup>
       <Reference Include="AEAssist">
-        <HintPath>G:\AE3.0\AEAssistCNVersion\AEAssist\AEAssist.dll</HintPath>
-      </Reference>
-      <Reference Include="SamplePlugin">
-        <HintPath>..\..\AICHAT.dll</HintPath>
+        <HintPath>..\AE3.0\AEAssistCNVersion\AEAssist\AEAssist.dll</HintPath>
       </Reference>
       <Reference Include="Dalamud">
         <HintPath>..\..\..\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\Dalamud.dll</HintPath>
       </Reference>
       <Reference Include="ECommons">
-        <HintPath>G:\AE\AE2.0\AEAssistCNVersion\AEAssist\ECommons.dll</HintPath>
+        <HintPath>..\AE3.0\AEAssistCNVersion\AEAssist\ECommons.dll</HintPath>
       </Reference>
       <Reference Include="FFXIVClientStructs">
         <HintPath>..\..\..\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\FFXIVClientStructs.dll</HintPath>
       </Reference>
       <Reference Include="ImGui.NET">
-        <HintPath>G:\FF14\XIVLauncher\addon\Hooks\dev\ImGui.NET.dll</HintPath>
+        <HintPath>..\..\..\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\ImGui.NET.dll</HintPath>
       </Reference>
     </ItemGroup>
 
