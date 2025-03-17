@@ -10,7 +10,7 @@ using PCT.utils.Helper;
 
 namespace Cindy_Master.PCT.Opener
 {
-    public class PCT_OpenerEden : IOpener
+    public class PCT_OpenerEden轴 : IOpener
     {
         public int StartCheck()
         {
@@ -33,7 +33,7 @@ namespace Cindy_Master.PCT.Opener
 
         public List<Action<Slot>> Sequence { get; }
 
-        public PCT_OpenerEden()
+        public PCT_OpenerEden轴()
         {
             _steps = new List<OpenerStep>();
 
@@ -67,13 +67,13 @@ namespace Cindy_Master.PCT.Opener
 
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.冰结, SpellTargetType.Target)
+                    new Spell(PCT_Data.Spells.火炎, SpellTargetType.Target)
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.飞石, SpellTargetType.Target)
+                    new Spell(PCT_Data.Spells.疾风, SpellTargetType.Target)
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.闪雷, SpellTargetType.Target)
+                    new Spell(PCT_Data.Spells.流水, SpellTargetType.Target)
                 ),
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.天星, SpellTargetType.Target),
@@ -100,7 +100,7 @@ namespace Cindy_Master.PCT.Opener
 
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.白神圣, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.冰结, SpellTargetType.Target),
                     new Spell(PCT_Data.Spells.即刻, SpellTargetType.Self)
                 ),
                 new OpenerStep(
@@ -120,7 +120,7 @@ namespace Cindy_Master.PCT.Opener
             countDownHandler.AddAction(4500, PCT_Data.Spells.彩虹, SpellTargetType.Target);
             // Uncomment the following line if you want to add a potion action at 500ms
             // countDownHandler.AddAction(500, Spell.CreatePotion().Id, SpellTargetType.Self);
-            Core.Resolve<MemApiChatMessage>().Toast2("100级 绝伊甸正常起手", 1, 3000);
+            Core.Resolve<MemApiChatMessage>().Toast2("100级 绝伊甸轴only起手", 1, 3000);
         }
     }
 }

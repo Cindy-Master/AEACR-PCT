@@ -10,13 +10,13 @@
 
     <ItemGroup>
       <Reference Include="AEAssist">
-        <HintPath>..\AE3.0\AEAssistCNVersion\AEAssist\AEAssist.dll</HintPath>
+        <HintPath>G:\AE3.0\AEAssistCNVersion\AEAssist\AEAssist.dll</HintPath>
       </Reference>
       <Reference Include="Dalamud">
         <HintPath>..\..\..\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\Dalamud.dll</HintPath>
       </Reference>
       <Reference Include="ECommons">
-        <HintPath>..\AE3.0\AEAssistCNVersion\AEAssist\ECommons.dll</HintPath>
+        <HintPath>G:\AE3.0\AEAssistCNVersion\AEAssist\ECommons.dll</HintPath>
       </Reference>
       <Reference Include="FFXIVClientStructs">
         <HintPath>..\..\..\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\FFXIVClientStructs.dll</HintPath>

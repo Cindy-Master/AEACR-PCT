@@ -41,11 +41,30 @@ public class PCT_锤子 : ISlotResolver
         }
 
 
-        if ((!Core.Resolve<JobApi_Pictomancer>().生物画 || !Core.Resolve<JobApi_Pictomancer>().风景画 || (!Core.Resolve<JobApi_Pictomancer>().武器画 && !Core.Me.HasAura(PCT_Data.Buffs.锤子预备))) && PictomancerRotationEntry.QT.GetQt(QTKey.优先画画))
+        // 动物彩绘相关判断
+        if (!Core.Resolve<JobApi_Pictomancer>().生物画 &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.动物彩绘) &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.优先画画))
         {
-            return -2;
+            return -7;
         }
 
+        // 风景画判断
+        if (!Core.Resolve<JobApi_Pictomancer>().风景画 &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.风景彩绘) &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.优先画画))
+        {
+            return -8;
+        }
+
+        // 武器画相关判断
+        if (!Core.Resolve<JobApi_Pictomancer>().武器画 &&
+            !Core.Me.HasAura(PCT_Data.Buffs.锤子预备) &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.武器彩绘) &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.优先画画))
+        {
+            return -9;
+        }
         if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && 风景构想Cooldown <= 15 && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && Core.Me.HasAura(PCT_Data.Buffs.锤子预备, 10000) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想) && PictomancerRotationEntry.QT.GetQt(QTKey.爆发) && Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.锤子预备) == 3 && PictomancerRotationEntry.QT.GetQt(QTKey.基础连) && !PictomancerRotationEntry.QT.GetQt(QTKey.测112))
         {
             return -3;

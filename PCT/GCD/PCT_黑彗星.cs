@@ -26,9 +26,28 @@ public class PCT_黑彗星 : ISlotResolver
         {
             return -1;
         }
-        if ((!Core.Resolve<JobApi_Pictomancer>().生物画 || !Core.Resolve<JobApi_Pictomancer>().风景画 || !Core.Resolve<JobApi_Pictomancer>().武器画) && PictomancerRotationEntry.QT.GetQt(QTKey.优先画画))
+        // 动物彩绘相关判断
+        if (!Core.Resolve<JobApi_Pictomancer>().生物画 &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.动物彩绘) &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.优先画画))
         {
             return -7;
+        }
+
+        // 风景画判断
+        if (!Core.Resolve<JobApi_Pictomancer>().风景画 &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.风景彩绘) &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.优先画画))
+        {
+            return -8;
+        }
+
+        // 武器画相关判断
+        if (!Core.Resolve<JobApi_Pictomancer>().武器画 &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.武器彩绘) &&
+            PictomancerRotationEntry.QT.GetQt(QTKey.优先画画))
+        {
+            return -9;
         }
         if (Core.Resolve<JobApi_Pictomancer>().豆子 == 0)
         {

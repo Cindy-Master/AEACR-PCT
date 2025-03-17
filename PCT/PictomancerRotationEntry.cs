@@ -121,7 +121,11 @@ namespace Cindy_Master.PCT
                 }
                 else if (PCTSettings.Instance.Enable100EdenOpener)
                 {
-                    return new PCT_OpenerEden();  // 1GCD 起手
+                    return new PCT_OpenerEden();  // 2GCD 起手
+                }
+                else if (PCTSettings.Instance.Enable100轴EdenOpener)
+                {
+                    return new PCT_OpenerEden轴();  // 2GCD 起手
                 }
             }
             if (level == 90)

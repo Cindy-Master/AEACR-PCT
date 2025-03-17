@@ -79,12 +79,25 @@ namespace Cindy_Master.PCT.Ui
                 if (enableEdenOpener)
                 {
                     PCTSettings.Instance.Enable100EdenOpener = true;
+                    PCTSettings.Instance.Enable100轴EdenOpener = false;
                     PCTSettings.Instance.Enable2GCDOpener = false;
                     PCTSettings.Instance.Enable3GCDOpener = false;
                 }
                 PCTSettings.Instance.Save();
             }
 
+            bool enable轴EdenOpener = PCTSettings.Instance.Enable100轴EdenOpener;
+            if (ImGui.Checkbox("绝伊甸轴only起手(必须用轴 起手打完进112)", ref enable轴EdenOpener))
+            {
+                if (enable轴EdenOpener)
+                {
+                    PCTSettings.Instance.Enable100EdenOpener = false;
+                    PCTSettings.Instance.Enable100轴EdenOpener = true;
+                    PCTSettings.Instance.Enable2GCDOpener = false;
+                    PCTSettings.Instance.Enable3GCDOpener = false;
+                }
+                PCTSettings.Instance.Save();
+            }
 
             // 2GCD 起手的 Checkbox
             bool enable2GCDOpener = PCTSettings.Instance.Enable2GCDOpener;
@@ -333,7 +346,7 @@ namespace Cindy_Master.PCT.Ui
                 ImGui.Text("当前没有目标或目标无效");
             }
 
-            ImGui.Text($"{Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速)}");
+            ImGui.Text($"{(34674u).GetSpell().Cooldown.TotalSeconds}");
 
 
 
