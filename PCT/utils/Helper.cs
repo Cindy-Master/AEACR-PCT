@@ -7,6 +7,7 @@ using AEAssist.JobApi;
 using AEAssist.MemoryApi;
 using Cindy_Master.PCT;
 using Cindy_Master.PCT.Data;
+using Cindy_Master.PCT.Setting;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
 
@@ -473,6 +474,44 @@ public static class Helper
         }
         return null;
     }
+
+
+    public static void 自动锁目标()
+    {
+        // 只在倒计时5秒时执行
+
+
+        // 先检查是否已有目标
+        if (Core.Me.GetCurrTarget() != null)
+        {
+            return; // 如果已有目标，则不执行自动锁定
+        }
+        if (!PCTSettings.Instance.高难起手自动锁目标)
+        {
+            return;
+        }
+
+        // 获取周围可攻击的敌人数量
+
+        var enemies = Data.AllHostileTargets?
+    .Where(e => e != null && e.IsValid() && e.DistanceToPlayer() <= 30 && e.IsTargetable)
+    .ToList() ?? new List<IBattleChara>();
+        // 如果附近有敌人，显示提示
+        if (enemies.Any())
+        {
+            // 按距离排序，选择最近的敌人
+            var target = enemies.OrderBy(e => e.DistanceToPlayer()).FirstOrDefault();
+            if (target != null)
+            {
+                Core.Me.SetTarget(target);
+                Core.Resolve<MemApiChatMessage>().Toast2("自动选择目标：" + target.Name, 1, 1000);
+
+            }
+        }
+    }
+
+
+
     public static void 三画(CountDownHandler countDownHandler)
     {
         var jobApi = Core.Resolve<JobApi_Pictomancer>();

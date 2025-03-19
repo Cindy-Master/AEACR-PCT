@@ -88,6 +88,7 @@ namespace Cindy_Master.PCT.Setting
         public bool Enable100轴EdenOpener { get; set; } = false;
         public bool 聊天框提示读条 { get; set; } = false;
         public bool 聊天框提示瞬发 { get; set; } = false;
+        public bool 高难起手自动锁目标 { get; set; } = false;
         public bool QT重置 { get; set; } = false;
         public double 风景彩绘CD阈值 { get; set; } = 15.0;
         public double 动物彩绘CD阈值 { get; set; } = 15.0;

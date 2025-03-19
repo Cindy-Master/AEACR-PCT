@@ -52,13 +52,24 @@ namespace Cindy_Master.PCT.Ui
                 }
             }
 
-            ImGui.Text("日随模式将不执行起手");
             ImGui.Separator();
+            // 增加一个复选框，允许用户自选是否打开自动锁目标
+            bool autoLockTarget = PCTSettings.Instance.高难起手自动锁目标;
+            if (ImGui.Checkbox("自动锁目标", ref autoLockTarget))
+            {
+                PCTSettings.Instance.高难起手自动锁目标 = autoLockTarget;
+                PCTSettings.Instance.Save();
+            }
+            ImGui.Separator();
+
+
+            ImGui.Text("日随模式将不执行起手");
             ImGui.Text("高难模式: 倒计时开始前 三画全满 倒计时>=5s");
             ImGui.Text("          倒计时开始前 三画未满 倒计时>=15s");
             ImGui.Text("未倒计时/不符合上述要求 电了别找我");
             ImGui.Separator();
             ImGui.Text("选择100级起手：");
+
 
             // 3GCD 起手的 Checkbox
             bool enable3GCDOpener = PCTSettings.Instance.Enable3GCDOpener;
@@ -67,6 +78,7 @@ namespace Cindy_Master.PCT.Ui
                 if (enable3GCDOpener)
                 {
                     PCTSettings.Instance.Enable3GCDOpener = true;
+                    PCTSettings.Instance.Enable100轴EdenOpener = false;
                     PCTSettings.Instance.Enable2GCDOpener = false;
                     PCTSettings.Instance.Enable100EdenOpener = false;
                 }
@@ -107,6 +119,7 @@ namespace Cindy_Master.PCT.Ui
                 {
                     PCTSettings.Instance.Enable2GCDOpener = true;
                     PCTSettings.Instance.Enable3GCDOpener = false;
+                    PCTSettings.Instance.Enable100轴EdenOpener = false;
                     PCTSettings.Instance.Enable100EdenOpener = false;
                 }
                 PCTSettings.Instance.Save();

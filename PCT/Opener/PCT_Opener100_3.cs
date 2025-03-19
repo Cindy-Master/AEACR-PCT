@@ -101,6 +101,7 @@ namespace Cindy_Master.PCT.Opener
         public void InitCountDown(CountDownHandler countDownHandler)
         {
             Helper.三画(countDownHandler);
+            Helper.自动锁目标();
             countDownHandler.AddAction(4500, PCT_Data.Spells.彩虹, SpellTargetType.Target);
             // Uncomment the following line if you want to add a potion action at 500ms
             // countDownHandler.AddAction(500, Spell.CreatePotion().Id, SpellTargetType.Self);

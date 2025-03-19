@@ -62,8 +62,8 @@ namespace Cindy_Master.PCT.Opener
                     new Spell(PCT_Data.Spells.星空, SpellTargetType.Self) { WaitServerAcq = false }
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.锤1, SpellTargetType.Target)
-                    //new Spell(PCT_Data.Spells.昏乱, SpellTargetType.Target)
+                    new Spell(PCT_Data.Spells.锤1, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.反转, SpellTargetType.Target)
 
                 ),
                 new OpenerStep(
@@ -76,8 +76,7 @@ namespace Cindy_Master.PCT.Opener
                     new Spell(PCT_Data.Spells.闪雷, SpellTargetType.Target)
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.天星, SpellTargetType.Target),
-                    new Spell(PCT_Data.Spells.反转, SpellTargetType.Target)
+                    new Spell(PCT_Data.Spells.天星, SpellTargetType.Target)
                 ),
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.锤2, SpellTargetType.Target),
@@ -117,6 +116,7 @@ namespace Cindy_Master.PCT.Opener
         public void InitCountDown(CountDownHandler countDownHandler)
         {
             Helper.三画(countDownHandler);
+            Helper.自动锁目标();
             countDownHandler.AddAction(4500, PCT_Data.Spells.彩虹, SpellTargetType.Target);
             // Uncomment the following line if you want to add a potion action at 500ms
             // countDownHandler.AddAction(500, Spell.CreatePotion().Id, SpellTargetType.Self);

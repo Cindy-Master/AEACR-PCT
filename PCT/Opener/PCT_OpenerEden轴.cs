@@ -47,11 +47,6 @@ namespace Cindy_Master.PCT.Opener
 
            ));
 
-            _steps.Add(new OpenerStep(
-
-
-            ));
-
 
             // 添加其他步骤
             _steps.AddRange(new List<OpenerStep>
@@ -117,10 +112,13 @@ namespace Cindy_Master.PCT.Opener
         public void InitCountDown(CountDownHandler countDownHandler)
         {
             Helper.三画(countDownHandler);
+            Helper.自动锁目标();
             countDownHandler.AddAction(4500, PCT_Data.Spells.彩虹, SpellTargetType.Target);
+
             // Uncomment the following line if you want to add a potion action at 500ms
             // countDownHandler.AddAction(500, Spell.CreatePotion().Id, SpellTargetType.Self);
             Core.Resolve<MemApiChatMessage>().Toast2("100级 绝伊甸轴only起手", 1, 3000);
+
         }
     }
 }

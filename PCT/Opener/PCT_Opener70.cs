@@ -91,6 +91,7 @@ namespace Cindy_Master.PCT.Opener
         public void InitCountDown(CountDownHandler countDownHandler)
         {
             Helper.三画(countDownHandler);
+            Helper.自动锁目标();
             countDownHandler.AddAction(1800, PCT_Data.Spells.火炎, SpellTargetType.Target);
             Core.Resolve<MemApiChatMessage>().Toast2("70级 起手", 1, 3000);
         }

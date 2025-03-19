@@ -86,6 +86,7 @@ namespace Cindy_Master.PCT.Opener
         public void InitCountDown(CountDownHandler countDownHandler)
         {
             Helper.三画(countDownHandler);
+            Helper.自动锁目标();
             if (PictomancerRotationEntry.QT.GetQt(QTKey.爆发药))
             {
                 countDownHandler.AddPotionAction(2100);
