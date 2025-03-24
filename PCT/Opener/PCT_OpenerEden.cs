@@ -40,15 +40,15 @@ namespace Cindy_Master.PCT.Opener
 
 
             _steps.Add(new OpenerStep(
-
-               Helper.爆发药(),
-               new Spell(PCT_Data.Spells.动物构想1, SpellTargetType.Target),
                new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target)
 
            ));
 
             _steps.Add(new OpenerStep(
 
+               Helper.白神圣(),
+               Helper.爆发药(),
+               new Spell(PCT_Data.Spells.动物构想1, SpellTargetType.Target)
 
             ));
 
@@ -95,12 +95,9 @@ namespace Cindy_Master.PCT.Opener
                 ),
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.动物彩绘3, SpellTargetType.Target),
-                    new Spell(PCT_Data.Spells.动物构想3, SpellTargetType.Target)
-
-                ),
-                new OpenerStep(
-                    new Spell(PCT_Data.Spells.白神圣, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.动物构想3, SpellTargetType.Target),
                     new Spell(PCT_Data.Spells.即刻, SpellTargetType.Self)
+
                 ),
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.彩虹, SpellTargetType.Target)

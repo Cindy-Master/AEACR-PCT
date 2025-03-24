@@ -30,11 +30,12 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -3;
             }
-            if (Core.Me.HasAura(PCT_Data.Buffs.彩虹预备) && !Core.Me.IsMoving() && Helper.自身存在Buff(PCT_Data.Buffs.加速装置) && Helper.自身存在Buff大于时间(PCT_Data.Buffs.锤子预备, 8000))
+            if (!Core.Me.IsMoving() && Helper.自身存在Buff(PCT_Data.Buffs.加速装置) && Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) > PCTSettings.Instance.多少层打锤子 && Helper.自身存在Buff大于时间(PCT_Data.Buffs.锤子预备, 8000))
             {
                 return -4;
             }
-            if (!Core.Me.HasAura(PCT_Data.Buffs.加速) || !Core.Me.HasAura(PCT_Data.Buffs.星空))
+
+            if (!Core.Me.HasAura(PCT_Data.Buffs.星空))
             {
                 return -5;
             }
@@ -45,6 +46,7 @@ namespace Cindy_Master.PCT.GCD
                     return -13;
                 }
             }
+
 
 
             return 0;

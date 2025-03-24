@@ -20,10 +20,7 @@ public class PCT_加速GCD_天星 : ISlotResolver
         {
             return -8;
         }
-        if (PictomancerRotationEntry.QT.GetQt(QTKey.团辅期乱打))
-        {
-            return -8;
-        }
+
         if (!Core.Me.HasAura(PCT_Data.Buffs.星空))
         {
             return -2;
@@ -32,7 +29,7 @@ public class PCT_加速GCD_天星 : ISlotResolver
         {
             return -1;
         }
-        if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && !Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
+        if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && !Core.Me.HasAura(PCT_Data.Buffs.锤子预备) && !Core.Me.HasAura(PCT_Data.Buffs.加速))
         {
             return -4;
         }

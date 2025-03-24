@@ -28,11 +28,12 @@ namespace Cindy_Master.PCT
         {
 
 
-            new SlotResolverData(new PCT_彩虹(), SlotMode.Gcd),
+
             new SlotResolverData(new PCT_加速GCD_天星(), SlotMode.Gcd),
             new SlotResolverData(new PCT_即刻(),SlotMode.OffGcd),
             new SlotResolverData(new PCT_爆发药(), SlotMode.OffGcd),
             new SlotResolverData(new PCT_加速GCD_锤子(), SlotMode.Gcd),
+            new SlotResolverData(new PCT_彩虹(), SlotMode.Gcd),
             new SlotResolverData(new PCT_加速GCD_黑彗星(), SlotMode.Gcd),
             new SlotResolverData(new PCT_加速GCD_基础连长(), SlotMode.Gcd),
             new SlotResolverData(new PCT_加速GCD_基础连短(), SlotMode.Gcd),

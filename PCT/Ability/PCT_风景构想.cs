@@ -42,6 +42,7 @@ public class PCT_风景构想 : ISlotResolver
             return -7;
         }
 
+
         if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Charges < 1)
         {
             return -3;

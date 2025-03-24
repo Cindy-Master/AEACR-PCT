@@ -272,6 +272,28 @@ namespace Cindy_Master.PCT.Ui
             }
             ImGui.Text($"当前设置至少保留层数: {PCTSettings.Instance.动物层数}");
 
+            ImGui.Separator();
+            // 设置锤子层数阈值
+            ImGui.Text("设置爆发期还剩下多少层加速的情况下打锤子：");
+            int currentHammerLayers = PCTSettings.Instance.多少层打锤子;
+            int newHammerLayers = currentHammerLayers;
+
+            if (ImGui.InputInt("##多少层打锤子阈值", ref newHammerLayers))
+            {
+                if (newHammerLayers >= 0 && newHammerLayers <= 5)
+                {
+                    PCTSettings.Instance.多少层打锤子 = newHammerLayers;
+                    PCTSettings.Instance.Save();
+                }
+                else
+                {
+                    newHammerLayers = currentHammerLayers;
+                }
+            }
+            ImGui.Text($"当前层数阈值: {PCTSettings.Instance.多少层打锤子}");
+
+            ImGui.Separator();
+
 
             ImGui.Separator();
             ImGui.Text("重置QT:");
@@ -284,7 +306,6 @@ namespace Cindy_Master.PCT.Ui
                 PCTSettings.Instance.QT重置 = resetQT;
                 PCTSettings.Instance.Save();
             }
-
 
 
             // Button to initialize QT
@@ -359,7 +380,7 @@ namespace Cindy_Master.PCT.Ui
                 ImGui.Text("当前没有目标或目标无效");
             }
 
-            ImGui.Text($"{(34674u).GetSpell().Cooldown.TotalSeconds}");
+            ImGui.Text($"{Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速)}");
 
 
 

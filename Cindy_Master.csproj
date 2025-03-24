@@ -7,6 +7,10 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="PCT\GCD\PCT_加速GCD_基础连.cs" />
+    </ItemGroup>
+
 
     <ItemGroup>
       <Reference Include="AEAssist">
