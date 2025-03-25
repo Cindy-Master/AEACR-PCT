@@ -29,7 +29,7 @@ public class PCT_加速GCD_天星 : ISlotResolver
         {
             return -1;
         }
-        if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && !Core.Me.HasAura(PCT_Data.Buffs.锤子预备) && !Core.Me.HasAura(PCT_Data.Buffs.加速))
+        if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && Core.Me.HasAura(PCT_Data.Buffs.锤子预备) && !Core.Me.HasAura(PCT_Data.Buffs.加速))
         {
             return -4;
         }

@@ -17,7 +17,7 @@ namespace Cindy_Master.PCT.Opener
             if (PCT_Data.Spells.风景构想.GetSpell().Charges < 1)
                 return -2;
 
-            if (AI.Instance.BattleData.CurrBattleTimeInMs > 5)
+            if (AI.Instance.BattleData.CurrBattleTimeInMs > 3000)
                 return -5;
             if (Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
                 return -6;

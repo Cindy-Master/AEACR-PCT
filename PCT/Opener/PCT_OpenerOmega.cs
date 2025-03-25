@@ -16,7 +16,7 @@ namespace Cindy_Master.PCT.Opener
         {
             if (PCT_Data.Spells.风景构想.GetSpell().Charges < 1)
                 return -2;
-            if (AI.Instance.BattleData.CurrBattleTimeInMs > 5)
+            if (AI.Instance.BattleData.CurrBattleTimeInMs > 3000)
                 return -5;
             if (Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
                 return -6;
@@ -39,15 +39,15 @@ namespace Cindy_Master.PCT.Opener
             // 条件添加步骤
             //if (PictomancerRotationEntry.QT.GetQt(QTKey.爆发药))
             //{
-            //    _steps.Add(new OpenerStep(Spell.CreatePotion()));
+            //   _steps.Add(new OpenerStep(Spell.CreatePotion()));
             //}
-
+            _steps.Add(new OpenerStep(new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target)));
             // 添加其他步骤
             _steps.AddRange(new List<OpenerStep>
             {
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.动物彩绘2, SpellTargetType.Target),
-                    new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target),
+                    //new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target),
                     new Spell(PCT_Data.Spells.星空, SpellTargetType.Self) { WaitServerAcq = false }
                 ),
                 new OpenerStep(

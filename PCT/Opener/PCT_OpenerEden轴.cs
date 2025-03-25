@@ -17,7 +17,7 @@ namespace Cindy_Master.PCT.Opener
             if (PCT_Data.Spells.风景构想.GetSpell().Charges < 1)
                 return -2;
 
-            if (AI.Instance.BattleData.CurrBattleTimeInMs > 5)
+            if (AI.Instance.BattleData.CurrBattleTimeInMs > 3000)
                 return -5;
             if (Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
                 return -6;
@@ -39,19 +39,22 @@ namespace Cindy_Master.PCT.Opener
 
 
 
-            _steps.Add(new OpenerStep(
-
-               Helper.爆发药(),
-               new Spell(PCT_Data.Spells.动物构想1, SpellTargetType.Target),
-               new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target)
-
-           ));
+            if (PictomancerRotationEntry.QT.GetQt(QTKey.爆发药))
+            {
+                _steps.Add(new OpenerStep(Spell.CreatePotion()));
+            }
 
 
             // 添加其他步骤
             _steps.AddRange(new List<OpenerStep>
             {
+
                 new OpenerStep(
+            new Spell(PCT_Data.Spells.动物构想1, SpellTargetType.Target),
+            new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target)
+
+                ),
+            new OpenerStep(
                     new Spell(PCT_Data.Spells.动物彩绘2, SpellTargetType.Target),
 
                     new Spell(PCT_Data.Spells.星空, SpellTargetType.Self) { WaitServerAcq = false }
@@ -113,7 +116,7 @@ namespace Cindy_Master.PCT.Opener
         {
             Helper.三画(countDownHandler);
             Helper.自动锁目标();
-            countDownHandler.AddAction(4500, PCT_Data.Spells.彩虹, SpellTargetType.Target);
+            countDownHandler.AddAction(4100, PCT_Data.Spells.彩虹, SpellTargetType.Target);
 
             // Uncomment the following line if you want to add a potion action at 500ms
             // countDownHandler.AddAction(500, Spell.CreatePotion().Id, SpellTargetType.Self);

@@ -44,7 +44,7 @@ namespace Cindy_Master.PCT.GCD
                     return -13;
                 }
             }
-            if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && !Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
+            if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
             {
                 return -2;
             }

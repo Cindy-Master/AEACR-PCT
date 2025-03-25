@@ -35,7 +35,7 @@ public class PCT_锤子 : ISlotResolver
             return -6;
         }
 
-        if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), 10000, true) && TargetHelper.IsBoss(GameObjectExtension.GetCurrTarget(Core.Me)) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
+        if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), 15000, true) && TargetHelper.IsBoss(GameObjectExtension.GetCurrTarget(Core.Me)) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
         {
             return 1;
         }

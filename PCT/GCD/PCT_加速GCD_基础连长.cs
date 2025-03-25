@@ -29,9 +29,13 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -3;
             }
-            if (!Core.Me.HasAura(PCT_Data.Buffs.加速) || !Core.Me.HasAura(PCT_Data.Buffs.星空))
+            if (!Core.Me.HasAura(PCT_Data.Buffs.星空))
             {
                 return -5;
+            }
+            if (!Core.Me.HasAura(PCT_Data.Buffs.加速) && Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
+            {
+                return -6;
             }
             if (!PCTSettings.Instance.奔放模式)
             {

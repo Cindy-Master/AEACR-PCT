@@ -20,7 +20,7 @@ namespace Cindy_Master.PCT.Ability
             {
                 return -2;
             }
-            if (!TargetHelper.targetCastingIsBossAOE(Core.Me.GetCurrTarget(), 1500))
+            if (!TargetHelper.targetCastingIsBossAOE(Core.Me.GetCurrTarget(), 1000))
             {
                 return -1;
             }

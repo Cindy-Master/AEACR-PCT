@@ -67,6 +67,7 @@ namespace Cindy_Master.PCT.Ui
             ImGui.Text("高难模式: 倒计时开始前 三画全满 倒计时>=5s");
             ImGui.Text("          倒计时开始前 三画未满 倒计时>=15s");
             ImGui.Text("未倒计时/不符合上述要求 电了别找我");
+            ImGui.Text("用起手的时候 最好打开 fuck 减少动画锁 不然可能会因为动画锁微卡gcd");
             ImGui.Separator();
             ImGui.Text("选择100级起手：");
 
@@ -113,7 +114,7 @@ namespace Cindy_Master.PCT.Ui
 
             // 2GCD 起手的 Checkbox
             bool enable2GCDOpener = PCTSettings.Instance.Enable2GCDOpener;
-            if (ImGui.Checkbox("2gcd 起手", ref enable2GCDOpener))
+            if (ImGui.Checkbox("2gcd 起手(为了GCD防卡 在打开 爆发药 的情况下会延后 武器构想 的插入)", ref enable2GCDOpener))
             {
                 if (enable2GCDOpener)
                 {

@@ -16,12 +16,16 @@ namespace Cindy_Master.PCT.Ability
             {
                 return -3;
             }
-            /* if (!TargetHelper.TargercastingIsbossaoe(Core.Me.GetCurrTarget(), 15))
-             {
-                 return -1;
-             }*/
+            if (!TargetHelper.targetCastingIsBossAOE(Core.Me.GetCurrTarget(), 500))
+            {
+                return -1;
+            }
 
             if (!Core.Me.HasAura(PCT_Data.Buffs.蛋))
+            {
+                return -2;
+            }
+            if (GCDHelper.GetGCDCooldown() < 300)
             {
                 return -2;
             }

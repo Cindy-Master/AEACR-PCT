@@ -16,7 +16,7 @@ namespace Cindy_Master.PCT.Opener
         {
             if (PCT_Data.Spells.风景构想.GetSpell().Charges < 1)
                 return -2;
-            if (AI.Instance.BattleData.CurrBattleTimeInMs > 5)
+            if (AI.Instance.BattleData.CurrBattleTimeInMs > 3000)
                 return -5;
             if (Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
                 return -6;
@@ -36,11 +36,6 @@ namespace Cindy_Master.PCT.Opener
         {
             _steps = new List<OpenerStep>();
 
-            // 条件添加步骤
-            if (PictomancerRotationEntry.QT.GetQt(QTKey.爆发药))
-            {
-                _steps.Add(new OpenerStep(Spell.CreatePotion()));
-            }
 
             // 添加其他步骤
             _steps.AddRange(new List<OpenerStep>
@@ -91,6 +86,10 @@ namespace Cindy_Master.PCT.Opener
         {
             Helper.三画(countDownHandler);
             Helper.自动锁目标();
+            if (PictomancerRotationEntry.QT.GetQt(QTKey.爆发药))
+            {
+                countDownHandler.AddPotionAction(2100);
+            }
             countDownHandler.AddAction(1800, PCT_Data.Spells.火炎, SpellTargetType.Target);
             countDownHandler.AddAction(200, PCT_Data.Spells.动物构想1, SpellTargetType.Target);
             Core.Resolve<MemApiChatMessage>().Toast2("90级龙诗 起手", 1, 3000);
