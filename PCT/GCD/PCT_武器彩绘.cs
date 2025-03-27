@@ -68,6 +68,10 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -3;
             }
+            if (Core.Me.HasAura(PCT_Data.Buffs.星空))
+            {
+                return -5;
+            }
 
 
             return 0;

@@ -60,24 +60,30 @@ namespace Cinndy_Master.PCT
         {
             if (!Helper.自身是否在移动())
             {
-                if (PictomancerRotationEntry.QT.GetQt(QTKey.自动绘画) && Helper.是否在副本中() && !Core.Resolve<MemApiDuty>().IsOver)
+                if (!Core.Me.HasAura(PCT_Data.Buffs.星空))
                 {
-                    if (!Core.Resolve<JobApi_Pictomancer>().武器画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘).GetSpell().IsReadyWithCanCast()) && !Core.Me.IsMoving())
+                    if (PictomancerRotationEntry.QT.GetQt(QTKey.自动绘画) && Helper.是否在副本中() && !Core.Resolve<MemApiDuty>().IsOver)
                     {
-                        await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘).GetSpell().Cast();
-                    }
+                        if (!Core.Resolve<JobApi_Pictomancer>().武器画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘).GetSpell().IsReadyWithCanCast()) && !Core.Me.IsMoving())
+                        {
+                            await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘).GetSpell().Cast();
+                            LogHelper.Info("无目标武器画");
+                        }
 
-                    if (!Core.Resolve<JobApi_Pictomancer>().生物画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物彩绘).GetSpell().IsReadyWithCanCast()) && !Core.Me.IsMoving())
-                    {
-                        await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物彩绘).GetSpell().Cast();
-                    }
+                        if (!Core.Resolve<JobApi_Pictomancer>().生物画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物彩绘).GetSpell().IsReadyWithCanCast()) && !Core.Me.IsMoving())
+                        {
+                            await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物彩绘).GetSpell().Cast();
+                            LogHelper.Info("无目标动物画");
+                        }
 
-                    if (!Core.Resolve<JobApi_Pictomancer>().风景画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景彩绘).GetSpell().IsReadyWithCanCast()) && !Core.Me.IsMoving())
-                    {
-                        await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景彩绘).GetSpell().Cast();
-                    }
+                        if (!Core.Resolve<JobApi_Pictomancer>().风景画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景彩绘).GetSpell().IsReadyWithCanCast()) && !Core.Me.IsMoving())
+                        {
+                            await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景彩绘).GetSpell().Cast();
+                            LogHelper.Info("无目标风景画");
+                        }
 
-                    await Task.CompletedTask;
+                        await Task.CompletedTask;
+                    }
                 }
             }
         }
@@ -95,16 +101,19 @@ namespace Cinndy_Master.PCT
                 if (!Core.Resolve<JobApi_Pictomancer>().武器画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘)).GetSpell().IsReadyWithCanCast())
                 {
                     await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘).GetSpell().Cast();
+                    LogHelper.Info("脱战武器画");
                 }
 
                 if (!Core.Resolve<JobApi_Pictomancer>().生物画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物彩绘)).GetSpell().IsReadyWithCanCast())
                 {
                     await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物彩绘).GetSpell().Cast();
+                    LogHelper.Info("脱战动物画");
                 }
 
                 if (!Core.Resolve<JobApi_Pictomancer>().风景画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景彩绘)).GetSpell().IsReadyWithCanCast())
                 {
                     await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景彩绘).GetSpell().Cast();
+                    LogHelper.Info("脱战风景画");
                 }
 
                 await Task.CompletedTask;
@@ -145,8 +154,8 @@ namespace Cinndy_Master.PCT
 
         public void OnEnterRotation()
         {
-            LogHelper.Print("[Cindy-Master]\n画家ACR 1.6.0 版本");
-            Core.Resolve<MemApiChatMessage>().Toast2("[Cindy-Master]\n画家ACR 1.6.0 版本\n高难模式请勿打开优化GCD偏移选项!!!", 1, 3000);
+            LogHelper.Print("[Cindy-Master]\n画家ACR 1.6.1 版本");
+            Core.Resolve<MemApiChatMessage>().Toast2("[Cindy-Master]\n画家ACR 1.6.1 版本\n高难模式请勿打开优化GCD偏移选项!!!", 1, 3000);
 
             if (PCTSettings.Instance.日随模式)
             {

@@ -47,8 +47,7 @@ namespace Cindy_Master.PCT.Opener
 
             _steps.Add(new OpenerStep(
 
-               Helper.白神圣(),
-                new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target)
+               Helper.白神圣()
 
             ));
             if (PictomancerRotationEntry.QT.GetQt(QTKey.爆发药))

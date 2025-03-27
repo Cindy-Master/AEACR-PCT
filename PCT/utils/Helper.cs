@@ -519,8 +519,8 @@ public static class Helper
         var spellsWithStatus = new List<(uint spellId, bool isMissing)>
     {
         (PCT_Data.Spells.动物彩绘1, !jobApi.生物画),
-        (PCT_Data.Spells.武器彩绘, !jobApi.武器画),
-        (PCT_Data.Spells.风景彩绘, !jobApi.风景画)
+        (PCT_Data.Spells.武器画, !jobApi.武器画),
+        (PCT_Data.Spells.风景画, !jobApi.风景画)
     };
 
         var missingSpellIds = spellsWithStatus

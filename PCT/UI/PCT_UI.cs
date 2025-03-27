@@ -17,7 +17,7 @@ namespace Cindy_Master.PCT.Ui
         public static void DrawQtGeneral(JobViewWindow jobViewWindow)
         {
             ImGui.Separator();
-            ImGui.Text("当前版本v1.6.0");
+            ImGui.Text("当前版本v1.6.1");
             ImGui.Separator();
 
             ImGui.Separator();
@@ -381,7 +381,7 @@ namespace Cindy_Master.PCT.Ui
                 ImGui.Text("当前没有目标或目标无效");
             }
 
-            ImGui.Text($"{Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速)}");
+            ImGui.Text($"{(34674u).GetSpell().Cooldown.TotalSeconds}");
 
 
 
