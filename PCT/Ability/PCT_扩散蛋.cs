@@ -25,10 +25,7 @@ namespace Cindy_Master.PCT.Ability
             {
                 return -2;
             }
-            if (GCDHelper.GetGCDCooldown() < 300)
-            {
-                return -2;
-            }
+
             if (!(PCT_Data.Spells.扩散蛋).GetSpell().IsReadyWithCanCast())
             {
                 return -2;
