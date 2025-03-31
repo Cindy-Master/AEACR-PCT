@@ -213,7 +213,7 @@ public static class Helper
 
     public static void Reset()
     {
-        PictomancerRotationEntry.QT.SetQt(QTKey.爆发药, true);
+        PictomancerRotationEntry.QT.SetQt(QTKey.爆发药, PictomancerRotationEntry.QT.GetQt(QTKey.爆发药));
         PictomancerRotationEntry.QT.SetQt(QTKey.白神圣, true);
         PictomancerRotationEntry.QT.SetQt(QTKey.黑彗星, true);
         PictomancerRotationEntry.QT.SetQt(QTKey.天星, true);

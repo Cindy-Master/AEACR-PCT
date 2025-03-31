@@ -49,11 +49,12 @@ namespace Cinndy_Master.PCT
         public void OnResetBattle()
         {
             Stop();
-            PCTSettings.Instance.SaveQtStates(PictomancerRotationEntry.QT);
+
             if (PCTSettings.Instance.QT重置)
             {
                 Helper.Reset();
             }
+            PCTSettings.Instance.SaveQtStates(PictomancerRotationEntry.QT);
         }
 
         public async Task OnNoTarget()

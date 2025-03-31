@@ -15,6 +15,8 @@ public class PCT_武器构想 : ISlotResolver
     {
         var 风景构想Spell = Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell();
         double 风景构想Cooldown = 风景构想Spell.Cooldown.TotalSeconds;
+        var 武器构想Spell = Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器构想).GetSpell();
+        double 武器构想Cooldown = 武器构想Spell.Cooldown.TotalSeconds;
 
         if (!PictomancerRotationEntry.QT.GetQt(QTKey.武器构想))
         {
@@ -41,7 +43,7 @@ public class PCT_武器构想 : ISlotResolver
             return -7;
         }
 
-        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && 风景构想Cooldown <= (34674u).GetSpell().Cooldown.TotalSeconds && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), 10000, true) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想) && PictomancerRotationEntry.QT.GetQt(QTKey.爆发) && PCTSettings.Instance.日随模式)
+        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && 风景构想Cooldown <= 武器构想Cooldown && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), 10000, true) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想) && PictomancerRotationEntry.QT.GetQt(QTKey.爆发) && PCTSettings.Instance.日随模式)
         {
             return -9;
         }
