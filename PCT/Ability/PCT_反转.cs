@@ -32,6 +32,10 @@ public class PCT_反转 : ISlotResolver
         {
             return -3;
         }
+        if (GCDHelper.GetGCDCooldown() < 600)
+        {
+            return -11;
+        }
         if (!(PCT_Data.Spells.反转).GetSpell().IsReadyWithCanCast())
         {
             return -7;

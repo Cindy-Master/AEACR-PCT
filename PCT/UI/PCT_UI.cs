@@ -417,10 +417,10 @@ namespace Cindy_Master.PCT.Ui
                     ImGui.Text("动物彩绘的冷却时间阈值，低于此值不会自动使用");
                     ImGui.EndTooltip();
                 }
-                
+
                 double currentShengWuCD = PCTSettings.Instance.动物彩绘CD阈值;
                 double newShengWuCD = currentShengWuCD;
-                
+
                 ImGui.SetNextItemWidth(width);
                 if (ImGui.InputDouble("##动物彩绘CD阈值", ref newShengWuCD, 1.0, 5.0, "%.1f"))
                 {
@@ -439,17 +439,17 @@ namespace Cindy_Master.PCT.Ui
                 ImGui.PopStyleColor();
 
                 // 设置武器彩绘CD阈值
-                ImGui.Text("武器彩绘CD阈值（秒）：   (强烈推荐30)");
+                ImGui.Text("武器彩绘CD阈值（秒）：   (强烈推荐30)  (大于60s就是在没有层数的情况下画)");
                 if (ImGui.IsItemHovered())
                 {
                     ImGui.BeginTooltip();
                     ImGui.Text("武器彩绘的冷却时间阈值，低于此值不会自动使用");
                     ImGui.EndTooltip();
                 }
-                
+
                 double currentWuQiCD = PCTSettings.Instance.武器彩绘CD阈值;
                 double newWuQiCD = currentWuQiCD;
-                
+
                 ImGui.SetNextItemWidth(width);
                 if (ImGui.InputDouble("##武器彩绘CD阈值", ref newWuQiCD, 1.0, 5.0, "%.1f"))
                 {
@@ -475,10 +475,10 @@ namespace Cindy_Master.PCT.Ui
                     ImGui.Text("风景彩绘的冷却时间阈值，低于此值不会自动使用");
                     ImGui.EndTooltip();
                 }
-                
+
                 double currentFengJingCD = PCTSettings.Instance.风景彩绘CD阈值;
                 double newFengJingCD = currentFengJingCD;
-                
+
                 ImGui.SetNextItemWidth(width);
                 if (ImGui.InputDouble("##风景彩绘CD阈值", ref newFengJingCD, 1.0, 5.0, "%.1f"))
                 {
@@ -530,10 +530,10 @@ namespace Cindy_Master.PCT.Ui
                     ImGui.Text("自动保留指定层数的动物彩绘，不会使其消耗至零");
                     ImGui.EndTooltip();
                 }
-                
+
                 int currentShengWuLayer = PCTSettings.Instance.动物层数;
                 int newShengWuLayer = currentShengWuLayer;
-                
+
                 ImGui.SetNextItemWidth(width);
                 if (ImGui.InputInt("##动物层数", ref newShengWuLayer))
                 {
@@ -559,10 +559,10 @@ namespace Cindy_Master.PCT.Ui
                     ImGui.Text("在爆发期间，当加速层数低于此值时会使用锤子");
                     ImGui.EndTooltip();
                 }
-                
+
                 int currentHammerLayers = PCTSettings.Instance.多少层打锤子;
                 int newHammerLayers = currentHammerLayers;
-                
+
                 ImGui.SetNextItemWidth(width);
                 if (ImGui.InputInt("##多少层打锤子阈值", ref newHammerLayers))
                 {
@@ -680,7 +680,7 @@ namespace Cindy_Master.PCT.Ui
                 ImGui.Text($"即刻: {PictomancerRotationEntry.QT.GetQt(QTKey.即刻)}");
                 ImGui.Text($"即刻技能状态: {PCT_Data.Spells.即刻.GetSpell().IsReadyWithCanCast()}");
                 ImGui.Text($"移动判定: {Core.Me.IsMoving() && !Core.Me.HasAura(167) && !PCT_Data.Spells.即刻.GetSpell().IsReadyWithCanCast() && !PictomancerRotationEntry.QT.GetQt(QTKey.即刻)}");
-                
+
                 // 获取当前目标（假设目标是玩家的当前敌人或目标）
                 var target = Core.Me.GetCurrTarget();
 

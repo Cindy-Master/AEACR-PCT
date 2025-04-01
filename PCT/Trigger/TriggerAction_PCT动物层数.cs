@@ -1,8 +1,7 @@
-using AEAssist;
 using AEAssist.CombatRoutine.Trigger;
 using AEAssist.GUI;
-using ImGuiNET;
 using Cindy_Master.PCT.Setting;
+using ImGuiNET;
 using System.Numerics;
 
 namespace Cindy_Master.PCT.Trigger
@@ -14,7 +13,7 @@ namespace Cindy_Master.PCT.Trigger
         public string Remark { get; set; }
 
         public int 层数设置;
-        private bool 初始化完成 = false;
+        public bool 初始化完成 = false;
 
         // 炫酷颜色定义
         private readonly Vector4 标题颜色 = new Vector4(0.7f, 0.5f, 0.9f, 1.0f);
@@ -22,9 +21,9 @@ namespace Cindy_Master.PCT.Trigger
         private readonly Vector4 动物图标颜色 = new Vector4(1.0f, 0.7f, 0.2f, 1.0f);
         private readonly Vector4 按钮颜色 = new Vector4(0.2f, 0.6f, 1.0f, 0.7f);
         private readonly Vector4 悬停颜色 = new Vector4(0.3f, 0.7f, 1.0f, 0.9f);
-        
+
         private bool 显示设置 = true;
-        
+
         public bool Draw()
         {
             // 从PCTSettings获取当前值作为默认值
@@ -33,17 +32,17 @@ namespace Cindy_Master.PCT.Trigger
                 层数设置 = PCTSettings.Instance.动物层数;
                 初始化完成 = true;
             }
-            
+
             // 添加样式
             ImGui.PushStyleVar(ImGuiStyleVar.FrameRounding, 8.0f);
             ImGui.PushStyleVar(ImGuiStyleVar.FramePadding, new Vector2(6, 6));
-            
+
             // 标题
             ImGui.PushStyleColor(ImGuiCol.Text, 标题颜色);
             ImGui.TextWrapped("动物层数智能控制系统");
             ImGui.PopStyleColor();
             ImGui.Separator();
-            
+
             // 折叠/展开按钮
             ImGui.PushStyleColor(ImGuiCol.Button, 按钮颜色);
             ImGui.PushStyleColor(ImGuiCol.ButtonHovered, 悬停颜色);
@@ -52,7 +51,7 @@ namespace Cindy_Master.PCT.Trigger
                 显示设置 = !显示设置;
             }
             ImGui.PopStyleColor(2);
-            
+
             if (显示设置)
             {
                 ImGui.PushStyleColor(ImGuiCol.Text, 动物图标颜色);
@@ -65,31 +64,31 @@ namespace Cindy_Master.PCT.Trigger
                     ImGui.EndTooltip();
                 }
                 ImGui.SameLine();
-                
+
                 // 设置面板宽度和样式
                 float 面板宽度 = ImGui.GetContentRegionAvail().X * 0.4f;
                 ImGui.PushStyleColor(ImGuiCol.FrameBg, new Vector4(0.3f, 0.2f, 0.4f, 0.7f));
                 ImGui.PushStyleColor(ImGuiCol.Button, new Vector4(0.4f, 0.3f, 0.6f, 0.8f));
                 ImGui.PushStyleColor(ImGuiCol.ButtonHovered, new Vector4(0.5f, 0.4f, 0.7f, 0.9f));
-                
+
                 ImGui.SetNextItemWidth(面板宽度);
                 ImGuiHelper.LeftInputInt("层数", ref 层数设置, 1);
                 ImGui.PopStyleColor(3);
-                
+
                 ImGui.Spacing();
                 ImGui.Separator();
-                
+
                 // 当前设置显示
                 ImGui.PushStyleColor(ImGuiCol.Text, 数值颜色);
                 ImGui.TextWrapped($"当前动物层数设置: {PCTSettings.Instance.动物层数} 层");
                 ImGui.PopStyleColor();
-                
+
                 // 添加描述性说明
                 ImGui.PushTextWrapPos(ImGui.GetContentRegionAvail().X);
                 ImGui.TextWrapped("动物层数控制会影响您的战斗策略和风格。请根据您的战斗需求调整至最佳值。");
                 ImGui.PopTextWrapPos();
             }
-            
+
             ImGui.PopStyleVar(2);
 
             return true;
@@ -97,15 +96,12 @@ namespace Cindy_Master.PCT.Trigger
 
         public bool Handle()
         {
-            // 确保层数在合理范围内
-            if (层数设置 < 1) 层数设置 = 1;
-            if (层数设置 > 10) 层数设置 = 10;
-            
+
             // 更新PCTSettings中的动物层数设置
             PCTSettings.Instance.动物层数 = 层数设置;
             PCTSettings.Instance.Save();
-            
+
             return true;
         }
     }
-} 
+}

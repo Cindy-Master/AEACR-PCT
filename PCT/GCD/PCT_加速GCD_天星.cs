@@ -29,15 +29,19 @@ public class PCT_加速GCD_天星 : ISlotResolver
         {
             return -1;
         }
-        if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && Core.Me.HasAura(PCT_Data.Buffs.锤子预备) && Core.Me.HasAura(PCT_Data.Buffs.加速))
+        if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && (Core.Me.HasAura(PCT_Data.Buffs.锤子预备) || (PCT_Data.Spells.武器画构想).GetSpell().IsReadyWithCanCast()) && Core.Me.HasAura(PCT_Data.Buffs.加速))
         {
             return -4;
 
             //秒天星的检测卡住  千万别改
         }
-        if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) >= 3 || Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) == 0)
+        if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) >= 3 && Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
         {
             return -5;
+        }
+        if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) == 0)
+        {
+            return -6;
         }
 
 

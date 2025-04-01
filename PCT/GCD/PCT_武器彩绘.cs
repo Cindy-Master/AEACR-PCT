@@ -54,7 +54,7 @@ namespace Cindy_Master.PCT.GCD
             double 风景构想Cooldown = 风景构想Spell.Cooldown.TotalSeconds;
 
 
-            if (风景构想Cooldown <= 30)
+            if (风景构想Cooldown <= 40)
             {
                 return 3;
             }
