@@ -8,7 +8,7 @@ namespace Cindy_Master.PCT.Trigger
 {
     public class TriggerAction_PCT彩绘CD阈值 : ITriggerAction
     {
-        public string DisplayName { get; } = "Cindy-Master-PCT/彩绘CD阈值设置";
+        public string DisplayName { get; } = "PCT/彩绘CD阈值设置";
 
         public string Remark { get; set; }
 

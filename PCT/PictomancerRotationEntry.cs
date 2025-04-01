@@ -105,6 +105,9 @@ namespace Cindy_Master.PCT
             rot.AddTriggerAction(new TriggerAction_PCT打锤子层数());
             rot.AddTriggerAction(new TriggerAction_PCT动物层数());
             rot.AddTriggerAction(new TriggerAction_PCT模式开关());
+            rot.AddTriggerAction(new TriggerAction_清理GCD队列());
+            rot.AddTriggerAction(new TriggerAction_清理能力技队列());
+
             //rot.AddTriggerAction(new TriggerAction_PCT起手技开关());
             return rot;
         }

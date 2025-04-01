@@ -1,4 +1,5 @@
 ﻿using AEAssist;
+using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Extension;
 using AEAssist.Helper;
@@ -701,6 +702,34 @@ namespace Cindy_Master.PCT.Ui
 
             // 恢复样式
             ImGui.PopStyleVar(3);
+
+            if (ImGui.TreeNode("插入技能状态"))
+            {
+                if (ImGui.Button("清除队列"))
+                {
+                    AI.Instance.BattleData.HighPrioritySlots_OffGCD.Clear();
+                    AI.Instance.BattleData.HighPrioritySlots_GCD.Clear();
+                }
+                ImGui.SameLine();
+                if (ImGui.Button("清除一个"))
+                {
+                    AI.Instance.BattleData.HighPrioritySlots_OffGCD.Dequeue();
+                    AI.Instance.BattleData.HighPrioritySlots_GCD.Dequeue();
+                }
+                ImGui.Text("-------能力技-------");
+                if (AI.Instance.BattleData.HighPrioritySlots_OffGCD.Count > 0)
+                    foreach (var action in AI.Instance.BattleData.HighPrioritySlots_OffGCD.SelectMany(spell => spell.Actions))
+                    {
+                        ImGui.Text(action.Spell.Name);
+                    }
+                ImGui.Text("-------GCD-------");
+                if (AI.Instance.BattleData.HighPrioritySlots_GCD.Count > 0)
+                    foreach (var action in AI.Instance.BattleData.HighPrioritySlots_GCD.SelectMany(spell => spell.Actions))
+                    {
+                        ImGui.Text(action.Spell.Name);
+                    }
+                ImGui.TreePop();
+            }
         }
 
         private static void DrawSeparator()

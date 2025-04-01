@@ -10,7 +10,7 @@ namespace Cindy_Master.Trigger
 {
     public class TriggerCondition_PCT团辅层数 : ITriggerCond
     {
-        public string DisplayName { get; } = "Cindy-Master-PCT/团辅层数监控";
+        public string DisplayName { get; } = "PCT/团辅层数监控";
 
         public string Remark { get; set; }
 

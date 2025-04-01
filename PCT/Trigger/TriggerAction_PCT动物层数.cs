@@ -8,7 +8,7 @@ namespace Cindy_Master.PCT.Trigger
 {
     public class TriggerAction_PCT动物层数 : ITriggerAction
     {
-        public string DisplayName { get; } = "Cindy-Master-PCT/动物层数优化";
+        public string DisplayName { get; } = "PCT/动物层数优化";
 
         public string Remark { get; set; }
 
