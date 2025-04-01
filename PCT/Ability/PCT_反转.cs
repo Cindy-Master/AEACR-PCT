@@ -32,7 +32,7 @@ public class PCT_反转 : ISlotResolver
         {
             return -3;
         }
-        if (GCDHelper.GetGCDCooldown() < 600)
+        if (GCDHelper.GetGCDCooldown() < 300)
         {
             return -11;
         }
