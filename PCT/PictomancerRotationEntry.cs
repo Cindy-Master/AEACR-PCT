@@ -101,6 +101,7 @@ namespace Cindy_Master.PCT
             rot.AddTriggerAction(new PictomancerQtTrigger());
             rot.AddTriggerCondition(new TriggerCondition_PCT量谱());
             rot.AddTriggerCondition(new TriggerCondition_PCT团辅层数());
+            rot.AddTriggerCondition(new TriggerCondition_爆发药状态());
             rot.AddTriggerAction(new TriggerAction_PCT彩绘CD阈值());
             rot.AddTriggerAction(new TriggerAction_PCT打锤子层数());
             rot.AddTriggerAction(new TriggerAction_PCT动物层数());

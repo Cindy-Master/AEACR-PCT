@@ -7,6 +7,7 @@ using AEAssist.JobApi;
 using AEAssist.MemoryApi;
 using Cindy_Master.PCT.Data;
 using Cindy_Master.PCT.Setting;
+using PCT.utils.Helper;
 using Shiyuvi3._0;
 
 namespace Cindy_Master.PCT.GCD
@@ -37,22 +38,19 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -2;
             }
-            if (!PCTSettings.Instance.奔放模式)
-            {
-                if (Core.Me.IsMoving() && !Core.Me.HasAura(167))
-                {
-                    return -13;
-                }
-            }
+
             if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
             {
                 return -2;
             }
-            if ((PCT_Data.Spells.黑彗星).GetSpell().IsReadyWithCanCast() && (PCT_Data.Spells.反转).GetSpell().IsReadyWithCanCast() && PictomancerRotationEntry.QT.GetQt(QTKey.反转))
+            if ((PCT_Data.Spells.黑彗星).GetSpell().IsReadyWithCanCast() && (PCT_Data.Spells.反转).GetSpell().IsReadyWithCanCast() && !Core.Me.HasAura(PCT_Data.Buffs.长Buff) && PictomancerRotationEntry.QT.GetQt(QTKey.反转))
             {
                 return 4;
             }
-
+            if (!Core.Me.IsMoving() && Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) > 2)
+            {
+                return -13;
+            }
 
 
             return 0;

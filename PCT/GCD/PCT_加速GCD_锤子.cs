@@ -39,13 +39,7 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -5;
             }
-            if (!PCTSettings.Instance.奔放模式)
-            {
-                if (Core.Me.IsMoving() && !Core.Me.HasAura(167))
-                {
-                    return -13;
-                }
-            }
+
 
 
 
