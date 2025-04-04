@@ -3,6 +3,7 @@ using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
+using AEAssist.JobApi;
 using AEAssist.MemoryApi;
 using Cindy_Master.PCT.Data;
 using Cindy_Master.PCT.Setting;
@@ -29,13 +30,13 @@ public class PCT_加速GCD_天星 : ISlotResolver
         {
             return -1;
         }
-        if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && (Core.Me.HasAura(PCT_Data.Buffs.锤子预备) || (PCT_Data.Spells.武器画构想).GetSpell().IsReadyWithCanCast()) && Core.Me.HasAura(PCT_Data.Buffs.加速))
+        if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && (Core.Me.HasAura(PCT_Data.Buffs.锤子预备) || Core.Resolve<JobApi_Pictomancer>().武器画) && Core.Me.HasAura(PCT_Data.Buffs.加速))
         {
             return -4;
 
             //秒天星的检测卡住  千万别改
         }
-        if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) >= 3 && (Core.Me.HasAura(PCT_Data.Buffs.锤子预备) || (PCT_Data.Spells.武器画构想).GetSpell().IsReadyWithCanCast()))
+        if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) >= 3 && (Core.Me.HasAura(PCT_Data.Buffs.锤子预备) || Core.Resolve<JobApi_Pictomancer>().武器画))
         {
             return -5;
         }

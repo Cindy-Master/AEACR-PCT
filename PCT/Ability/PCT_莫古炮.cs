@@ -45,7 +45,7 @@ public class PCT_莫古炮 : ISlotResolver
             cooldownTime = 20; // Set to 20 seconds for 高难模式
         }
 
-        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds <= cooldownTime && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想))
+        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds <= cooldownTime && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想) && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想))
         {
             return -3;
         }

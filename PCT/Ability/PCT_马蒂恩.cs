@@ -31,17 +31,17 @@ public class PCT_马蒂恩 : ISlotResolver
         }
 
 
-        if (Core.Me.HasAura(PCT_Data.Buffs.星空, 15000))
+        if (Core.Me.HasAura(PCT_Data.Buffs.星空, 15000) && PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源))
         {
             return -1;
         }
 
 
-        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds <= 40 && (PCT_Data.Spells.风景构想).GetSpell().IsReadyWithCanCast())
+        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds <= 40 && (PCT_Data.Spells.风景构想).GetSpell().IsReadyWithCanCast() && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想))
         {
             return -3;
         }
-        if (!Core.Me.HasAura(PCT_Data.Buffs.星空))
+        if (!Core.Me.HasAura(PCT_Data.Buffs.星空) && !PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想))
         {
             return -3;
         }

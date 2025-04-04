@@ -31,7 +31,7 @@ public class PCT_爆发药 : ISlotResolver
             return -9;
         }
 
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds > 2)
+        if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds > 3)
         {
             return -6;
         }

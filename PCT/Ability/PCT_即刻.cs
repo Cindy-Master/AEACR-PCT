@@ -23,6 +23,10 @@ namespace Cindy_Master.PCT.Ability
             {
                 return -7;
             }
+            if (GCDHelper.GetGCDCooldown() < 200)
+            {
+                return -8;
+            }
 
             var 动物彩绘Checker = new PCT_动物彩绘();
             var 武器彩绘Checker = new PCT_武器彩绘();

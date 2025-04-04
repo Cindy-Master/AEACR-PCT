@@ -55,7 +55,7 @@ public class PCT_风景构想 : ISlotResolver
     {
         Core.Resolve<MemApiChatMessage>().Toast2("色魔纹!! 开!!!", 1, 3000);
 
-
-        slot.Add(new Spell(Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.星空), Core.Me));
+        slot.AddDelaySpell(450, new Spell(PCT_Data.Spells.星空, Core.Me));
+        AI.Instance.BattleData.CurrGcdAbilityCount = 1;
     }
 }

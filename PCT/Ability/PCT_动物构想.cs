@@ -40,13 +40,13 @@ public class PCT_动物构想 : ISlotResolver
         {
             生物构想Cooldown = 2.6;
         }
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds <= 10 && (PCT_Data.Spells.风景构想).GetSpell().IsUnlock() && !PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源))
+        if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds <= 10 && (PCT_Data.Spells.风景构想).GetSpell().IsUnlock() && !PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想))
         {
             return -3;
         }
 
         int requiredLayer = PCTSettings.Instance.动物层数 + 1;
-        if (生物构想Charges < requiredLayer - 0.2 && !Core.Me.HasAura(PCT_Data.Buffs.星空) && !PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源))
+        if (生物构想Charges < requiredLayer - 0.2 && !Core.Me.HasAura(PCT_Data.Buffs.星空) && !PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想))
         {
             return -6;
         }

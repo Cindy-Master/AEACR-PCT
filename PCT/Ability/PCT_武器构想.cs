@@ -48,10 +48,12 @@ public class PCT_武器构想 : ISlotResolver
             return -9;
         }
 
+
         if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器构想).GetSpell().Charges < 1)
         {
             return -3;
         }
+
 
         return 0;
     }

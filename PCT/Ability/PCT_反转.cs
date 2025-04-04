@@ -16,10 +16,6 @@ public class PCT_反转 : ISlotResolver
             return -8;
         }
 
-        if (GCDHelper.GetGCDCooldown() < 300)
-        {
-            return -2;
-        }
         if (Core.Resolve<JobApi_Pictomancer>().能量 < 50 && !Core.Me.HasAura(PCT_Data.Buffs.反转预备))
         {
             return -1;
@@ -47,7 +43,7 @@ public class PCT_反转 : ISlotResolver
                 return -4;
             }
         }
-        if (Core.Resolve<JobApi_Pictomancer>().豆子 == 0 && PCT_Data.Spells.白神圣.IsUnlock())
+        if (Core.Resolve<JobApi_Pictomancer>().豆子 == 0 && PCT_Data.Spells.白神圣.IsUnlock() && Core.Me.HasAura(PCT_Data.Buffs.星空))
         {
             return -9;
         }
