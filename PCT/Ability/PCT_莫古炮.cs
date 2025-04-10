@@ -49,7 +49,10 @@ public class PCT_莫古炮 : ISlotResolver
         {
             return -3;
         }
-
+        if (Core.Me.HasAura(PCT_Data.Buffs.星空, 15000) && PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源))
+        {
+            return -1;
+        }
         if (PCT_Data.Spells.莫古.GetSpell().Charges < 1)
         {
             return -3;

@@ -30,7 +30,9 @@ public class PCT_动物构想 : ISlotResolver
         var 生物构想Spell = PCT_Data.Spells.动物构想.GetSpell();
         int 生物构想MaxCharges = Core.Resolve<MemApiSpell>().GetMaxCharges(生物构想Spell.Id);
         float 生物构想Charges = Core.Resolve<MemApiSpell>().GetCharges(生物构想Spell.Id);
+
         double 生物构想Cooldown = 1.7;
+        double 生物构想MAXCooldown = 40;
 
         if (生物构想MaxCharges == 2)
         {
@@ -40,7 +42,16 @@ public class PCT_动物构想 : ISlotResolver
         {
             生物构想Cooldown = 2.6;
         }
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds <= 10 && (PCT_Data.Spells.风景构想).GetSpell().IsUnlock() && !PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想))
+
+        if (生物构想MaxCharges == 2)
+        {
+            生物构想MAXCooldown = 40;
+        }
+        else if (生物构想MaxCharges == 3)
+        {
+            生物构想MAXCooldown = 80;
+        }
+        if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds <= 30 && (PCT_Data.Spells.风景构想).GetSpell().IsUnlock() && !PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想) && Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物构想).GetSpell().Cooldown.TotalSeconds / 40 < 生物构想Cooldown && Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物构想).GetSpell().Cooldown.TotalSeconds > 生物构想MAXCooldown && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想))
         {
             return -3;
         }

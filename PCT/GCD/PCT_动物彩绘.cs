@@ -49,6 +49,7 @@ namespace Cindy_Master.PCT.GCD
                 return -2;
             }
 
+
             var 生物构想Spell = PCT_Data.Spells.动物构想.GetSpell();
             int 生物构想MaxCharges = Core.Resolve<MemApiSpell>().GetMaxCharges(生物构想Spell.Id);
             float 生物构想Charges = Core.Resolve<MemApiSpell>().GetCharges(生物构想Spell.Id);
@@ -66,20 +67,20 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -4;
             }
-            if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget()))
+            if (Core.Me.HasAura(PCT_Data.Buffs.星空))
             {
-                return -3;
+                return -5;
             }
-
+            if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds <= 30)
+            {
+                return 3;
+            }
             double userCooldownThreshold = PCTSettings.Instance.动物彩绘CD阈值;
             if (!PictomancerRotationEntry.QT.GetQt(QTKey.优先画画) && 生物构想Cooldown >= userCooldownThreshold && PictomancerRotationEntry.QT.GetQt(QTKey.基础连) && !PictomancerRotationEntry.QT.GetQt(QTKey.测112))
             {
                 return -7;
             }
-            if (Core.Me.HasAura(PCT_Data.Buffs.星空))
-            {
-                return -5;
-            }
+
 
 
             return 0;
