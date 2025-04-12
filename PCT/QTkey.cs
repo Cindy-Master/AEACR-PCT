@@ -35,6 +35,10 @@
         public const string 测112 = "112(危)";
         public const string 优先画画 = "优先画画";
         public const string 倾泻资源 = "倾泻资源";
+        public const string 快死不爆 = "快死不爆";
+        public const string 快死不画动物 = "快死不画动物";
+        public const string 快死不画武器 = "快死不画武器";
+        public const string 快死不画风景 = "快死不画风景";
 
     }
 

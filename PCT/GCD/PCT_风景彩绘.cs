@@ -15,7 +15,6 @@ namespace Cindy_Master.PCT.GCD
         {
             if (!(PCT_Data.Spells.风景彩绘).IsUnlock())
             {
-
                 return -9;
             }
 
@@ -23,14 +22,15 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -7;
             }
-            if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), 15000, true) && TargetHelper.IsBoss(GameObjectExtension.GetCurrTarget(Core.Me)) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
+            if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, false) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
             {
                 return -6;
             }
-            if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget()))
+            if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, true) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
             {
-                return -3;
+                return -6;
             }
+
 
             if (!PCTSettings.Instance.奔放模式)
             {

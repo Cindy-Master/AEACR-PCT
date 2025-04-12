@@ -6,6 +6,7 @@ using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
 using Cindy_Master.PCT.Data;
+using Cindy_Master.PCT.Setting;
 using PCT.utils.Helper;
 
 namespace Cindy_Master.PCT.Ability;
@@ -29,7 +30,11 @@ public class PCT_风景构想 : ISlotResolver
         {
             return -9;
         }
-        if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget()))
+        if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, true) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不爆) && !PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源))
+        {
+            return -3;
+        }
+        if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, false) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不爆) && !PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源))
         {
             return -3;
         }

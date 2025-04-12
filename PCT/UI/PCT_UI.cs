@@ -581,7 +581,51 @@ namespace Cindy_Master.PCT.Ui
                 ImGui.Text($"当前层数阈值: {PCTSettings.Instance.多少层打锤子}");
                 ImGui.PopStyleColor();
 
-                ImGui.PopStyleColor(3);
+                // 设置TTK阈值
+                ImGui.PushStyleColor(ImGuiCol.Text, 警告颜色);
+                ImGui.TextWrapped("TTK（Time To Kill）是预计击杀目标所需的剩余时间，合理设置可避免BOSS即将死亡时浪费彩绘时间");
+                ImGui.PopStyleColor();
+                
+                ImGui.Text("设置TTK阈值（毫秒）：");
+                if (ImGui.IsItemHovered())
+                {
+                    ImGui.BeginTooltip();
+                    ImGui.Text("当目标剩余击杀时间低于此值时，将停止使用彩绘技能");
+                    ImGui.EndTooltip();
+                }
+
+                int currentTTK = PCTSettings.Instance.TTK阈值;
+                int newTTK = currentTTK;
+
+                ImGui.SetNextItemWidth(width);
+                if (ImGui.InputInt("##TTK阈值", ref newTTK, 1000, 5000))
+                {
+                    if (newTTK >= 5000 && newTTK <= 20000)
+                    {
+                        PCTSettings.Instance.TTK阈值 = newTTK;
+                        PCTSettings.Instance.Save();
+                    }
+                    else
+                    {
+                        newTTK = currentTTK;
+                    }
+                }
+                ImGui.PushStyleColor(ImGuiCol.Text, 提示颜色);
+                ImGui.Text($"当前TTK阈值: {PCTSettings.Instance.TTK阈值} 毫秒（{PCTSettings.Instance.TTK阈值/1000.0:F1}秒）");
+                ImGui.PopStyleColor();
+
+                // 重置TTK阈值按钮
+                ImGui.PushStyleColor(ImGuiCol.Button, new Vector4(0.9f, 0.4f, 0.2f, 0.7f));
+                ImGui.PushStyleColor(ImGuiCol.ButtonHovered, new Vector4(1.0f, 0.5f, 0.3f, 0.9f));
+                if (ImGui.Button("重置TTK阈值为默认值(15秒)", new Vector2(ImGui.GetContentRegionAvail().X * 0.5f, 25)))
+                {
+                    PCTSettings.Instance.TTK阈值 = 15000;
+                    PCTSettings.Instance.Save();
+                    newTTK = 15000;
+                }
+                ImGui.PopStyleColor(2);
+
+
 
                 // 聊天框设置
                 ImGui.PushStyleColor(ImGuiCol.Text, 副标题颜色);

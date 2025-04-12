@@ -35,11 +35,14 @@ public class PCT_锤子 : ISlotResolver
             return -6;
         }
 
-        if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), 15000, true) && TargetHelper.IsBoss(GameObjectExtension.GetCurrTarget(Core.Me)) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
+        if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, false) && TargetHelper.IsBoss(GameObjectExtension.GetCurrTarget(Core.Me)) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
         {
             return 1;
         }
-
+        if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, true) && TargetHelper.IsBoss(GameObjectExtension.GetCurrTarget(Core.Me)) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
+        {
+            return 1;
+        }
 
         // 动物彩绘相关判断
         if (!Core.Resolve<JobApi_Pictomancer>().生物画 &&

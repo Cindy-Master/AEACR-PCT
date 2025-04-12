@@ -94,6 +94,7 @@ namespace Cindy_Master.PCT.Setting
         public double 风景彩绘CD阈值 { get; set; } = 60.0;
         public double 动物彩绘CD阈值 { get; set; } = 15.0;
         public double 武器彩绘CD阈值 { get; set; } = 30.0;
+        public int TTK阈值 { get; set; } = 15000;
 
 
         public int 动物层数 { get; set; } = 1;

@@ -99,6 +99,7 @@ namespace Cindy_Master.PCT
             rot.AddOpener(GetOpener);
             rot.SetRotationEventHandler(new PictomancerRotationEventHandler());
             rot.AddTriggerAction(new PictomancerQtTrigger());
+            rot.AddTriggerAction(new PictomancerNewQtTrigger());
             rot.AddTriggerCondition(new TriggerCondition_PCT量谱());
             rot.AddTriggerCondition(new TriggerCondition_PCT团辅层数());
             rot.AddTriggerCondition(new TriggerCondition_爆发药状态());
@@ -222,6 +223,9 @@ namespace Cindy_Master.PCT
             PictomancerRotationEntry.QT.AddQt(QTKey.倾泻资源, false);
             PictomancerRotationEntry.QT.AddQt(QTKey.优先画画, false);
             PictomancerRotationEntry.QT.AddQt(QTKey.团辅期乱打, false);
+            PictomancerRotationEntry.QT.AddQt(QTKey.快死不爆, true, "影响团辅和锤子构想");
+
+
 
 
             PictomancerRotationEntry.QT.AddHotkey("沉稳咏唱", new HotKeyResolver_NormalSpell(SpellsDefine.Surecast, SpellTargetType.Self, false));

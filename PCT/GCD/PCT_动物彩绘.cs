@@ -26,7 +26,11 @@ namespace Cindy_Master.PCT.GCD
                 return -7;
             }
 
-            if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), 15000, true) && TargetHelper.IsBoss(GameObjectExtension.GetCurrTarget(Core.Me)) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
+            if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, false) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
+            {
+                return -6;
+            }
+            if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, true) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
             {
                 return -6;
             }
