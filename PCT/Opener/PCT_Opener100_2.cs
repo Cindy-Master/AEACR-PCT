@@ -45,31 +45,31 @@ namespace Cindy_Master.PCT.Opener
 
             // 添加动物构想1
             _steps.Add(new OpenerStep(new Spell(PCT_Data.Spells.动物构想1, SpellTargetType.Target)));
-            
+
             // 根据条件添加武器画构想
             if (!PictomancerRotationEntry.QT.GetQt(QTKey.爆发药))
             {
-                _steps.Add(new OpenerStep(new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target)));
+                _steps.Add(new OpenerStep(new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Self)));
             }
 
             // 添加其他步骤
             _steps.AddRange(new List<OpenerStep>
             {
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.动物彩绘2, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.动物彩绘2, SpellTargetType.Self),
                     new Spell(PCT_Data.Spells.星空, SpellTargetType.Self){ WaitServerAcq = false }
                 ),
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.天星, SpellTargetType.Target)
                 )
             });
-            
+
             // 如果条件为true，添加武器画构想在天星后面
             if (PictomancerRotationEntry.QT.GetQt(QTKey.爆发药))
             {
-                _steps.Add(new OpenerStep(new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target)));
+                _steps.Add(new OpenerStep(new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Self)));
             }
-            
+
             // 继续添加其他步骤
             _steps.AddRange(new List<OpenerStep>
             {
@@ -95,7 +95,7 @@ namespace Cindy_Master.PCT.Opener
                     new Spell(PCT_Data.Spells.即刻, SpellTargetType.Self)
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.动物彩绘3, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.动物彩绘3, SpellTargetType.Self),
                     new Spell(PCT_Data.Spells.动物构想3, SpellTargetType.Target)
                 ),
             });

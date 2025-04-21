@@ -46,7 +46,7 @@ namespace Cindy_Master.PCT.Opener
                     //
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.动物彩绘2, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.动物彩绘2, SpellTargetType.Self),
                     new Spell(PCT_Data.Spells.星空, SpellTargetType.Self) { WaitServerAcq = false }
                 ),
                 new OpenerStep(
@@ -59,7 +59,7 @@ namespace Cindy_Master.PCT.Opener
                     new Spell(PCT_Data.Spells.锤3, SpellTargetType.Target),
                     new Spell(PCT_Data.Spells.即刻, SpellTargetType.Target)),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.武器画, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.武器画, SpellTargetType.Self),
                     new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Self)),
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.锤1, SpellTargetType.Target)),

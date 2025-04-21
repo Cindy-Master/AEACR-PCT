@@ -41,7 +41,7 @@ namespace Cindy_Master.PCT.Opener
             //{
             //    _steps.Add(new OpenerStep(Spell.CreatePotion()));
             //}
-            _steps.Add(new OpenerStep(new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target)));
+            _steps.Add(new OpenerStep(new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Self)));
             // 添加其他步骤
             _steps.AddRange(new List<OpenerStep>
             {
@@ -74,7 +74,7 @@ namespace Cindy_Master.PCT.Opener
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.锤3, SpellTargetType.Target)),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.动物彩绘2, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.动物彩绘2, SpellTargetType.Self),
                     new Spell(PCT_Data.Spells.动物构想2, SpellTargetType.Target),
                     new Spell(PCT_Data.Spells.莫古, SpellTargetType.Target)),
             });

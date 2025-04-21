@@ -39,7 +39,7 @@ namespace Cindy_Master.PCT.GCD
                 return -2;
             }
 
-            if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置))
+            if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && Helper.自身存在Buff大于时间(PCT_Data.Buffs.星空, 7000))
             {
                 return -2;
             }
@@ -47,7 +47,7 @@ namespace Cindy_Master.PCT.GCD
             {
                 return 4;
             }
-            if (!Core.Me.IsMoving() && Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) > 2)
+            if (!Core.Me.IsMoving() && Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) > 2 && Helper.自身存在Buff大于时间(PCT_Data.Buffs.星空, 5000))
             {
                 return -13;
             }

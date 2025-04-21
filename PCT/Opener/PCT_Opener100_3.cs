@@ -42,18 +42,18 @@ namespace Cindy_Master.PCT.Opener
             {
                 _steps.Add(new OpenerStep(Spell.CreatePotion()));
             }
-            
+
 
             // 添加其他步骤
             _steps.AddRange(new List<OpenerStep>
             {
                 new OpenerStep(
                     Helper.白神圣(),
-                    new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.武器画构想, SpellTargetType.Self),
                     new Spell(PCT_Data.Spells.动物构想1, SpellTargetType.Target)
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.动物彩绘2, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.动物彩绘2, SpellTargetType.Self),
                     new Spell(PCT_Data.Spells.星空, SpellTargetType.Self) { WaitServerAcq = false }
                 ),
                 new OpenerStep(
@@ -88,7 +88,7 @@ namespace Cindy_Master.PCT.Opener
                     new Spell(PCT_Data.Spells.即刻, SpellTargetType.Self)
                 ),
                 new OpenerStep(
-                    new Spell(PCT_Data.Spells.动物彩绘3, SpellTargetType.Target),
+                    new Spell(PCT_Data.Spells.动物彩绘3, SpellTargetType.Self),
                     new Spell(PCT_Data.Spells.动物构想3, SpellTargetType.Target)
                 ),
             });

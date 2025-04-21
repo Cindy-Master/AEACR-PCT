@@ -30,7 +30,7 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -3;
             }
-            if (!Core.Me.IsMoving() && Helper.自身存在Buff(PCT_Data.Buffs.加速装置) && Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) > PCTSettings.Instance.多少层打锤子 && Helper.自身存在Buff大于时间(PCT_Data.Buffs.锤子预备, 10000))
+            if (!Core.Me.IsMoving() && Helper.自身存在Buff(PCT_Data.Buffs.加速装置) && Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) >= PCTSettings.Instance.多少层打锤子 && Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) !=0 && Helper.自身存在Buff大于时间(PCT_Data.Buffs.锤子预备, 10000))
             {
                 return -4;
             }

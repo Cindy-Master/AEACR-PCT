@@ -51,7 +51,10 @@ public class PCT_武器构想 : ISlotResolver
         {
             return -9;
         }
-
+        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && 风景构想Cooldown <= 武器构想Cooldown && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想))
+        {
+            return -10;
+        }
 
         if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器构想).GetSpell().Charges < 1)
         {

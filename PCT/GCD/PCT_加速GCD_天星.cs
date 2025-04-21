@@ -30,17 +30,21 @@ public class PCT_加速GCD_天星 : ISlotResolver
         {
             return -1;
         }
-        if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && (Core.Me.HasAura(PCT_Data.Buffs.锤子预备) || Core.Resolve<JobApi_Pictomancer>().武器画) && Core.Me.HasAura(PCT_Data.Buffs.加速))
+        if (!Core.Me.HasAura(PCT_Data.Buffs.加速装置) && (Core.Me.HasAura(PCT_Data.Buffs.锤子预备) || Core.Resolve<JobApi_Pictomancer>().武器画) && Core.Me.HasAura(PCT_Data.Buffs.加速) && Helper.自身存在Buff大于时间(PCT_Data.Buffs.星空, 5000))
         {
             return -4;
 
             //秒天星的检测卡住  千万别改
         }
-        if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) >= 3 && (Core.Me.HasAura(PCT_Data.Buffs.锤子预备) || Core.Resolve<JobApi_Pictomancer>().武器画))
+        if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) >= 3 && (Core.Me.HasAura(PCT_Data.Buffs.锤子预备) || Core.Resolve<JobApi_Pictomancer>().武器画) && Helper.自身存在Buff大于时间(PCT_Data.Buffs.星空, 5000))
         {
             return -5;
         }
-        if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) == 0)
+
+
+        var 风景构想Spell = Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell();
+        double 风景构想Cooldown = 风景构想Spell.Cooldown.TotalSeconds;
+        if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速) == 0 && 风景构想Cooldown <= 115)
         {
             return -6;
         }

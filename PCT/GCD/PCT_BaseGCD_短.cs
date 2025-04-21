@@ -32,7 +32,7 @@ public class PCT_BaseGCD_短 : ISlotResolver
         {
             return -2;
         }
-        if (Helper.上一个能力技能() == PCT_Data.Spells.星空 && PCTSettings.Instance.高难模式)
+        if (Helper.上一个能力技能() == PCT_Data.Spells.星空)
         {
             return -3;
         }
