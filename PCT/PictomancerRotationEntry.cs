@@ -37,10 +37,10 @@ namespace Cindy_Master.PCT
             new SlotResolverData(new PCT_彩虹(), SlotMode.Gcd),
             new SlotResolverData(new PCT_加速GCD_基础连长(), SlotMode.Gcd),
             new SlotResolverData(new PCT_加速GCD_基础连短(), SlotMode.Gcd),
-
+            new SlotResolverData(new PCT_黑彗星(), SlotMode.Gcd),
             new SlotResolverData(new PCT_动物彩绘(), SlotMode.Gcd),
             new SlotResolverData(new PCT_锤子(), SlotMode.Gcd),
-            new SlotResolverData(new PCT_黑彗星(), SlotMode.Gcd),
+
             new SlotResolverData(new PCT_风景彩绘(), SlotMode.Gcd),
             new SlotResolverData(new PCT_武器彩绘(), SlotMode.Gcd),
             new SlotResolverData(new PCT_BaseGCD_长(), SlotMode.Gcd),
