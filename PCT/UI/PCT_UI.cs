@@ -1,9 +1,4 @@
-﻿using AEAssist;
-using AEAssist.CombatRoutine.Module;
-using AEAssist.CombatRoutine.View.JobView;
-using AEAssist.Extension;
-using AEAssist.Helper;
-using Cindy_Master.PCT.Data;
+﻿using Cindy_Master.PCT.Data;
 using Cindy_Master.PCT.Setting;
 using Cindy_Master.Util;
 using ImGuiNET;
@@ -215,6 +210,7 @@ namespace Cindy_Master.PCT.Ui
                         PCTSettings.Instance.Enable100轴EdenOpener = false;
                         PCTSettings.Instance.Enable2GCDOpener = false;
                         PCTSettings.Instance.Enable100EdenOpener = false;
+                        PCTSettings.Instance.Enable100FastOpener = false;
                     }
                     PCTSettings.Instance.Save();
                 }
@@ -224,7 +220,25 @@ namespace Cindy_Master.PCT.Ui
                     ImGui.Text("使用3GCD的起手战术");
                     ImGui.EndTooltip();
                 }
-
+                bool enable100FastOpener = PCTSettings.Instance.Enable100FastOpener;
+                if (ImGui.Checkbox("3g速泄 起手", ref enable100FastOpener))
+                {
+                    if (enable100FastOpener)
+                    {
+                        PCTSettings.Instance.Enable3GCDOpener = false;
+                        PCTSettings.Instance.Enable100FastOpener = true;
+                        PCTSettings.Instance.Enable100轴EdenOpener = false;
+                        PCTSettings.Instance.Enable2GCDOpener = false;
+                        PCTSettings.Instance.Enable100EdenOpener = false;
+                    }
+                    PCTSettings.Instance.Save();
+                }
+                if (ImGui.IsItemHovered())
+                {
+                    ImGui.BeginTooltip();
+                    ImGui.Text("使用3GCD的速泄彩虹起手战术");
+                    ImGui.EndTooltip();
+                }
                 // 绝伊甸起手
                 bool enableEdenOpener = PCTSettings.Instance.Enable100EdenOpener;
                 if (ImGui.Checkbox("绝伊甸起手", ref enableEdenOpener))
@@ -232,6 +246,7 @@ namespace Cindy_Master.PCT.Ui
                     if (enableEdenOpener)
                     {
                         PCTSettings.Instance.Enable100EdenOpener = true;
+                        PCTSettings.Instance.Enable100FastOpener = false;
                         PCTSettings.Instance.Enable100轴EdenOpener = false;
                         PCTSettings.Instance.Enable2GCDOpener = false;
                         PCTSettings.Instance.Enable3GCDOpener = false;
@@ -252,6 +267,7 @@ namespace Cindy_Master.PCT.Ui
                     if (enable轴EdenOpener)
                     {
                         PCTSettings.Instance.Enable100EdenOpener = false;
+                        PCTSettings.Instance.Enable100FastOpener = false;
                         PCTSettings.Instance.Enable100轴EdenOpener = true;
                         PCTSettings.Instance.Enable2GCDOpener = false;
                         PCTSettings.Instance.Enable3GCDOpener = false;
@@ -272,6 +288,7 @@ namespace Cindy_Master.PCT.Ui
                     if (enable2GCDOpener)
                     {
                         PCTSettings.Instance.Enable2GCDOpener = true;
+                        PCTSettings.Instance.Enable100FastOpener = false;
                         PCTSettings.Instance.Enable3GCDOpener = false;
                         PCTSettings.Instance.Enable100轴EdenOpener = false;
                         PCTSettings.Instance.Enable100EdenOpener = false;
@@ -585,7 +602,7 @@ namespace Cindy_Master.PCT.Ui
                 ImGui.PushStyleColor(ImGuiCol.Text, 警告颜色);
                 ImGui.TextWrapped("TTK（Time To Kill）是预计击杀目标所需的剩余时间，合理设置可避免BOSS即将死亡时浪费彩绘时间");
                 ImGui.PopStyleColor();
-                
+
                 ImGui.Text("设置TTK阈值（毫秒）：");
                 if (ImGui.IsItemHovered())
                 {
@@ -611,7 +628,7 @@ namespace Cindy_Master.PCT.Ui
                     }
                 }
                 ImGui.PushStyleColor(ImGuiCol.Text, 提示颜色);
-                ImGui.Text($"当前TTK阈值: {PCTSettings.Instance.TTK阈值} 毫秒（{PCTSettings.Instance.TTK阈值/1000.0:F1}秒）");
+                ImGui.Text($"当前TTK阈值: {PCTSettings.Instance.TTK阈值} 毫秒（{PCTSettings.Instance.TTK阈值 / 1000.0:F1}秒）");
                 ImGui.PopStyleColor();
 
                 // 重置TTK阈值按钮

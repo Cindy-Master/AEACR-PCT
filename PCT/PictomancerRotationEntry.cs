@@ -1,8 +1,3 @@
-using AEAssist.CombatRoutine;
-using AEAssist.CombatRoutine.Module;
-using AEAssist.CombatRoutine.Module.Opener;
-using AEAssist.CombatRoutine.View.JobView;
-using AEAssist.CombatRoutine.View.JobView.HotkeyResolver;
 using Cindy_Master.PCT.Ability;
 using Cindy_Master.PCT.Data;
 using Cindy_Master.PCT.GCD;
@@ -141,6 +136,10 @@ namespace Cindy_Master.PCT
                 else if (PCTSettings.Instance.Enable100轴EdenOpener)
                 {
                     return new PCT_OpenerEden轴();  // 2GCD 起手
+                }
+                else if (PCTSettings.Instance.Enable100FastOpener)
+                {
+                    return new PCT_Opener100Fast();  // 3GCD速泄 起手
                 }
             }
             if (level == 90)
