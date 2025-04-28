@@ -18,6 +18,10 @@ public class PCT_武器构想 : ISlotResolver
         var 武器构想Spell = Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器构想).GetSpell();
         double 武器构想Cooldown = 武器构想Spell.Cooldown.TotalSeconds;
 
+        double adjustedWeaponCooldownThreshold = (武器构想Cooldown > 60) ? (武器构想Cooldown - 60) : 武器构想Cooldown;
+
+
+
         if (!PictomancerRotationEntry.QT.GetQt(QTKey.武器构想))
         {
             return -8;
@@ -43,15 +47,15 @@ public class PCT_武器构想 : ISlotResolver
             return -7;
         }
 
-        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && 风景构想Cooldown <= 武器构想Cooldown && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, false) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想) && PictomancerRotationEntry.QT.GetQt(QTKey.爆发) && PCTSettings.Instance.日随模式 && PictomancerRotationEntry.QT.GetQt(QTKey.快死不爆))
+        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && 风景构想Cooldown <= adjustedWeaponCooldownThreshold && Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器构想).GetSpell().Charges == 0 && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, false) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想) && PictomancerRotationEntry.QT.GetQt(QTKey.爆发) && PCTSettings.Instance.日随模式 && PictomancerRotationEntry.QT.GetQt(QTKey.快死不爆))
         {
             return -9;
         }
-        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && 风景构想Cooldown <= 武器构想Cooldown && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, true) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想) && PictomancerRotationEntry.QT.GetQt(QTKey.爆发) && PCTSettings.Instance.日随模式 && PictomancerRotationEntry.QT.GetQt(QTKey.快死不爆))
+        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && 风景构想Cooldown <= adjustedWeaponCooldownThreshold && Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器构想).GetSpell().Charges == 0 && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, true) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想) && PictomancerRotationEntry.QT.GetQt(QTKey.爆发) && PCTSettings.Instance.日随模式 && PictomancerRotationEntry.QT.GetQt(QTKey.快死不爆))
         {
             return -9;
         }
-        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && 风景构想Cooldown <= 武器构想Cooldown && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想))
+        if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && 风景构想Cooldown <= adjustedWeaponCooldownThreshold && Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器构想).GetSpell().Charges == 0 && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && PictomancerRotationEntry.QT.GetQt(QTKey.风景构想))
         {
             return -10;
         }

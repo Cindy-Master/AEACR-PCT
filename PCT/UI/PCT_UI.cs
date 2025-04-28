@@ -1,4 +1,9 @@
-﻿using Cindy_Master.PCT.Data;
+﻿using AEAssist;
+using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.View.JobView;
+using AEAssist.Extension;
+using AEAssist.Helper;
+using Cindy_Master.PCT.Data;
 using Cindy_Master.PCT.Setting;
 using Cindy_Master.Util;
 using ImGuiNET;

@@ -1,3 +1,8 @@
+using AEAssist.CombatRoutine;
+using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.Opener;
+using AEAssist.CombatRoutine.View.JobView;
+using AEAssist.CombatRoutine.View.JobView.HotkeyResolver;
 using Cindy_Master.PCT.Ability;
 using Cindy_Master.PCT.Data;
 using Cindy_Master.PCT.GCD;

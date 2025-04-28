@@ -1,4 +1,11 @@
-﻿using Cindy_Master.PCT.Data;
+﻿using AEAssist;
+using AEAssist.CombatRoutine;
+using AEAssist.CombatRoutine.Module;
+using AEAssist.CombatRoutine.Module.Opener;
+using AEAssist.Extension;
+using AEAssist.Helper;
+using AEAssist.MemoryApi;
+using Cindy_Master.PCT.Data;
 using PCT.utils.Helper;
 
 namespace Cindy_Master.PCT.Opener
@@ -59,7 +66,7 @@ namespace Cindy_Master.PCT.Opener
                 new OpenerStep(
                     new Spell(PCT_Data.Spells.闪雷, SpellTargetType.Target)
                 ),
-                new Opener(
+                new OpenerStep(
                     new Spell(PCT_Data.Spells.黑彗星, SpellTargetType.Target)
                 ),
                 new OpenerStep(

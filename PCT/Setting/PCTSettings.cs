@@ -86,6 +86,7 @@ namespace Cindy_Master.PCT.Setting
         public bool Enable90OmegaOpenerTest { get; set; } = false;
         public bool Enable100EdenOpener { get; set; } = false;
         public bool Enable100轴EdenOpener { get; set; } = false;
+        public bool Enable100FastOpener { get; set; } = false;
         public bool 聊天框提示读条 { get; set; } = false;
         public bool 聊天框提示瞬发 { get; set; } = false;
         public bool 高难起手自动锁目标 { get; set; } = false;
