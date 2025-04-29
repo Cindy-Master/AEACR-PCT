@@ -602,7 +602,12 @@ namespace Cindy_Master.PCT.Ui
                 ImGui.PushStyleColor(ImGuiCol.Text, 提示颜色);
                 ImGui.Text($"当前层数阈值: {PCTSettings.Instance.多少层打锤子}");
                 ImGui.PopStyleColor();
-
+                bool enablebuka = PCTSettings.Instance.不卡模式;
+                if (ImGui.Checkbox("不卡模式 (勾选这个请确认你的网络和动画锁非常流畅 甚至启动了DR的动画锁减少+三插动画锁)否则开星空的时候会微卡 甚至很卡GCD", ref enablebuka))
+                {
+                    PCTSettings.Instance.不卡模式 = enablebuka;
+                    PCTSettings.Instance.Save();
+                }
                 // 设置TTK阈值
                 ImGui.PushStyleColor(ImGuiCol.Text, 警告颜色);
                 ImGui.TextWrapped("TTK（Time To Kill）是预计击杀目标所需的剩余时间，合理设置可避免BOSS即将死亡时浪费彩绘时间");

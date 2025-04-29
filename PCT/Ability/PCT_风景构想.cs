@@ -42,25 +42,41 @@ public class PCT_风景构想 : ISlotResolver
         {
             return -1;
         }
-        if (!(PCT_Data.Spells.星空).GetSpell().IsReadyWithCanCast())
+        if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Cooldown.TotalSeconds > 0.3)
         {
             return -7;
         }
 
-
-        if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Charges < 1)
+        if (PCTSettings.Instance.不卡模式)
         {
-            return -3;
+            if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell().Charges < 1)
+            {
+                return -3;
+            }
         }
-
+        else
+        {
+            if (!(PCT_Data.Spells.星空).GetSpell().IsReadyWithCanCast())
+            {
+                return -1;
+            }
+        }
         return 0;
     }
 
     public void Build(Slot slot)
     {
         Core.Resolve<MemApiChatMessage>().Toast2("色魔纹!! 开!!!", 1, 3000);
+        if (PCTSettings.Instance.不卡模式)
+        {
 
-        slot.AddDelaySpell(450, new Spell(PCT_Data.Spells.星空, Core.Me));
+            slot.Add(new Spell(PCT_Data.Spells.星空, Core.Me));
+        }
+        else
+        {
+            slot.AddDelaySpell(450, new Spell(PCT_Data.Spells.星空, Core.Me));
+
+        }
         AI.Instance.BattleData.CurrGcdAbilityCount = 1;
     }
 }

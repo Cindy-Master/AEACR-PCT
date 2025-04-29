@@ -20,7 +20,7 @@ public class PCT_反转 : ISlotResolver
         {
             return -1;
         }
-        if ((PCT_Data.Spells.黑彗星).GetSpell().IsReadyWithCanCast() || Core.Me.HasAura(PCT_Data.Buffs.黑彗星buff))
+        if ((PCT_Data.Spells.黑彗星).GetSpell().IsReadyWithCanCast() || Core.Me.HasAura(PCT_Data.Buffs.黑彗星buff) && PictomancerRotationEntry.QT.GetQt(QTKey.黑彗星))
         {
             return -9;
         }

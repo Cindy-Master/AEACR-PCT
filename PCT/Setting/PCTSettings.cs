@@ -92,6 +92,7 @@ namespace Cindy_Master.PCT.Setting
         public bool 高难起手自动锁目标 { get; set; } = false;
         public int 多少层打锤子 { get; set; } = 0;
         public bool QT重置 { get; set; } = false;
+        public bool 不卡模式 { get; set; } = false;
         public double 风景彩绘CD阈值 { get; set; } = 60.0;
         public double 动物彩绘CD阈值 { get; set; } = 15.0;
         public double 武器彩绘CD阈值 { get; set; } = 30.0;
