@@ -13,6 +13,29 @@ namespace Cinndy_Master.PCT
 {
     public class PictomancerRotationEventHandler : IRotationEventHandler
     {
+        private readonly HashSet<uint> _targetSpellIds = new HashSet<uint>
+        {
+            PCT_Data.Spells.动物彩绘1,
+            PCT_Data.Spells.动物彩绘2,
+            PCT_Data.Spells.动物彩绘4,
+            PCT_Data.Spells.动物彩绘3,
+            PCT_Data.Spells.风景画,
+            PCT_Data.Spells.武器画,
+            PCT_Data.Spells.火炎,
+            PCT_Data.Spells.疾风,
+            PCT_Data.Spells.流水,
+            PCT_Data.Spells.烈风,
+            PCT_Data.Spells.烈水,
+            PCT_Data.Spells.烈炎,
+            PCT_Data.Spells.冰结,
+            PCT_Data.Spells.震雷,
+            PCT_Data.Spells.坚石,
+            PCT_Data.Spells.冰冻,
+            PCT_Data.Spells.闪雷,
+            PCT_Data.Spells.飞石,
+
+        };
+
         private static bool lastStopValue = false;
         public static bool manualOverride = false;
         private int originalCastingSpellSuccessRemainTiming;
@@ -124,7 +147,14 @@ namespace Cinndy_Master.PCT
 
         public void AfterSpell(Slot slot, Spell spell)
         {
-
+            if (_targetSpellIds.Contains(spell.Id))
+            {
+                AI.Instance.BattleData.CurrGcdAbilityCount = 1;
+            }
+            else
+            {
+                LogHelper.Info($"施放的技能 {spell.Name} ({spell.Id}) 不在目标列表中");
+            }
         }
 
         public void OnBattleUpdate(int currTime)

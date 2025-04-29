@@ -769,7 +769,7 @@ namespace Cindy_Master.PCT.Ui
                 }
 
                 ImGui.Text($"当前限制的ogcd: {AI.Instance.BattleData.CurrGcdAbilityCount}");
-                ImGui.Text($"打出的ogcd: {AI.Instance.BattleData.CurrGcdAbilityCount}");
+
 
 
                 ImGui.Text($"加速层数: {Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速)}");
