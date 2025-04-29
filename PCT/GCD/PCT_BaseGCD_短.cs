@@ -65,7 +65,7 @@ public class PCT_BaseGCD_短 : ISlotResolver
         {
             LogHelper.Print("要读条啦");
         }
-        AI.Instance.BattleData.CurrGcdAbilityCount = 1;
+
     }
 
 }

@@ -48,6 +48,7 @@ namespace Cindy_Master.PCT.GCD
             {
                 slot.Add(PCT_Data.Spells.白神圣.GetSpell());
             }
+
         }
 
     }

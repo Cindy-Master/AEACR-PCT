@@ -71,6 +71,7 @@ public class PCT_加速GCD_天星 : ISlotResolver
         {
             LogHelper.Print("要瞬发啦");
         }
+
     }
 
 }

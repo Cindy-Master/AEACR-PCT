@@ -76,7 +76,8 @@ namespace Cindy_Master.PCT.GCD
             {
                 LogHelper.Print("要瞬发啦");
             }
-            AI.Instance.BattleData.CurrGcdAbilityCount = 1;
+
+
         }
 
         private Spell GetSpell()

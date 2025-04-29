@@ -46,6 +46,7 @@ public class PCT_彩虹 : ISlotResolver
         {
             LogHelper.Print("要瞬发啦");
         }
+
     }
 
 }

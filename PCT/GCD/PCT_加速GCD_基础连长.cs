@@ -69,7 +69,7 @@ namespace Cindy_Master.PCT.GCD
             {
                 LogHelper.Print("要读条啦");
             }
-            AI.Instance.BattleData.CurrGcdAbilityCount = 1;
+
 
         }
 
