@@ -58,9 +58,6 @@ namespace Cindy_Master.PCT
             new SlotResolverData(new PCT_武器构想(), SlotMode.OffGcd),
             new SlotResolverData(new PCT_动物构想(), SlotMode.OffGcd),
             new SlotResolverData(new PCT_风景构想(), SlotMode.Gcd),
-
-
-
             new SlotResolverData(new PCT_醒梦(), SlotMode.OffGcd),
 
         };

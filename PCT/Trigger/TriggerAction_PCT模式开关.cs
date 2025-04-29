@@ -12,6 +12,7 @@ namespace Cindy_Master.PCT.Trigger
         public string Remark { get; set; }
 
         public bool 奔放模式;
+        public bool 不卡模式;
         public bool 日随模式;
         public bool 高难模式;
         public bool 聊天框提示读条;
@@ -40,6 +41,7 @@ namespace Cindy_Master.PCT.Trigger
             if (!初始化完成)
             {
                 奔放模式 = PCTSettings.Instance.奔放模式;
+                不卡模式 = PCTSettings.Instance.不卡模式;
                 日随模式 = PCTSettings.Instance.日随模式;
                 高难模式 = PCTSettings.Instance.高难模式;
                 聊天框提示读条 = PCTSettings.Instance.聊天框提示读条;
@@ -70,6 +72,19 @@ namespace Cindy_Master.PCT.Trigger
             {
                 ImGui.BeginTooltip();
                 ImGui.Text("启用奔放模式，移动施法才开");
+                ImGui.EndTooltip();
+            }
+            ImGui.PopStyleColor();
+            ImGui.EndGroup();
+
+            // 新增：不卡模式 Checkbox
+            ImGui.BeginGroup();
+            ImGui.PushStyleColor(ImGuiCol.CheckMark, new Vector4(0.9f, 0.9f, 0.2f, 1.0f));
+            ImGui.Checkbox("不卡模式", ref 不卡模式);
+            if (ImGui.IsItemHovered())
+            {
+                ImGui.BeginTooltip();
+                ImGui.Text("实验性功能：尝试减少卡顿（可能影响性能或稳定性）");
                 ImGui.EndTooltip();
             }
             ImGui.PopStyleColor();
@@ -214,6 +229,7 @@ namespace Cindy_Master.PCT.Trigger
         {
             // 更新PCTSettings中的模式开关设置
             PCTSettings.Instance.奔放模式 = 奔放模式;
+            PCTSettings.Instance.不卡模式 = 不卡模式;
             PCTSettings.Instance.日随模式 = 日随模式;
             PCTSettings.Instance.高难模式 = 高难模式;
             PCTSettings.Instance.聊天框提示读条 = 聊天框提示读条;
