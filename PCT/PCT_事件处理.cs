@@ -91,7 +91,7 @@ namespace Cinndy_Master.PCT
 
         public void OnSpellCastSuccess(Slot slot, Spell spell)
         {
-
+            AI.Instance.BattleData.CurrGcdAbilityCount = 1;
         }
 
         public async Task OnPreCombat()
