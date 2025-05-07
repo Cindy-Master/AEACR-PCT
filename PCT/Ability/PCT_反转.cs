@@ -43,7 +43,7 @@ public class PCT_反转 : ISlotResolver
                 return -4;
             }
         }
-        if (Core.Resolve<JobApi_Pictomancer>().豆子 == 0 && PCT_Data.Spells.白神圣.IsUnlock() && Core.Me.HasAura(PCT_Data.Buffs.星空))
+        if (Core.Resolve<JobApi_Pictomancer>().豆子 == 0 && PCT_Data.Spells.白神圣.IsUnlock() && !Core.Me.HasAura(PCT_Data.Buffs.星空))
         {
             return -9;
         }

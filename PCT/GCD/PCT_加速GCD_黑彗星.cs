@@ -17,6 +17,30 @@ namespace Cindy_Master.PCT.GCD
         public int Check()
         {
 
+            int buffStacks = Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.锤子预备);
+
+            int timeThreshold = 10000;
+
+            if (buffStacks == 3)
+            {
+                timeThreshold = 10000; // 3层时，阈值为 10000ms
+            }
+            else if (buffStacks == 2)
+            {
+                timeThreshold = 7000;  // 2层时，阈值为 7000ms (假设 7 代表 7 秒)
+
+            }
+            else if (buffStacks == 1)
+            {
+                timeThreshold = 5000;  // 1层时，阈值为 5000ms (假设 5 代表 5 秒)
+            }
+
+            // 如果满足特定层数条件，并且自身存在Buff大于对应的时间阈值
+            if (!Helper.自身存在Buff大于时间(PCT_Data.Buffs.锤子预备, timeThreshold))
+            {
+                return -14;
+            }
+
             if (!PictomancerRotationEntry.QT.GetQt(QTKey.黑彗星))
             {
                 return -8;
