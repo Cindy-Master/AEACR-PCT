@@ -36,7 +36,7 @@ namespace Cindy_Master.PCT.GCD
             }
 
             // 如果满足特定层数条件，并且自身存在Buff大于对应的时间阈值
-            if (!Helper.自身存在Buff大于时间(PCT_Data.Buffs.锤子预备, timeThreshold))
+            if (!Helper.自身存在Buff大于时间(PCT_Data.Buffs.锤子预备, timeThreshold) && Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
             {
                 return -14;
             }
