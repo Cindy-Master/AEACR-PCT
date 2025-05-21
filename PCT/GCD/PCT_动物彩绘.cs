@@ -80,7 +80,7 @@ namespace Cindy_Master.PCT.GCD
                 return 3;
             }
             double userCooldownThreshold = PCTSettings.Instance.动物彩绘CD阈值;
-            if ((!PictomancerRotationEntry.QT.GetQt(QTKey.优先画画) || !PictomancerRotationEntry.QT.GetQt(QTKey.死都得画)) && 生物构想Cooldown >= userCooldownThreshold && PictomancerRotationEntry.QT.GetQt(QTKey.基础连) && !PictomancerRotationEntry.QT.GetQt(QTKey.测112))
+            if (!PictomancerRotationEntry.QT.GetQt(QTKey.优先画画) && !PictomancerRotationEntry.QT.GetQt(QTKey.死都得画) && 生物构想Cooldown >= userCooldownThreshold && PictomancerRotationEntry.QT.GetQt(QTKey.基础连) && !PictomancerRotationEntry.QT.GetQt(QTKey.测112))
             {
                 return -7;
             }
