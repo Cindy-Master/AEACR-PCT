@@ -39,6 +39,7 @@
         public const string 快死不画动物 = "快死不画动物";
         public const string 快死不画武器 = "快死不画武器";
         public const string 快死不画风景 = "快死不画风景";
+        public const string 死都得画 = "死都得画";
 
     }
 

@@ -1,15 +1,4 @@
-﻿using AEAssist;
-using AEAssist.CombatRoutine;
-using AEAssist.CombatRoutine.Module;
-using AEAssist.Extension;
-using AEAssist.Helper;
-using AEAssist.MemoryApi;
-using Cindy_Master.PCT.Data;
-using Cindy_Master.PCT.Setting;
-using PCT.utils.Helper;
-using Shiyuvi3._0;
-
-namespace Cindy_Master.PCT.GCD
+﻿namespace Cindy_Master.PCT.GCD
 {
     public class PCT_加速GCD_基础连 : ISlotResolver
     {
@@ -19,10 +8,6 @@ namespace Cindy_Master.PCT.GCD
             if (!PictomancerRotationEntry.QT.GetQt(QTKey.基础连))
             {
                 return -1;
-            }
-            if (PictomancerRotationEntry.QT.GetQt(QTKey.团辅期乱打))
-            {
-                return -2;
             }
 
             if (!Core.Me.HasAura(PCT_Data.Buffs.长Buff))

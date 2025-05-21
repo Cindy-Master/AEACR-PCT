@@ -91,11 +91,11 @@ public class PCT_动物构想 : ISlotResolver
         var canTargetObjects = ShiyuviTargetHelper.SmartTargetCircleAOE(2, Core.Me.GetCurrTarget(), 25f, 5f, Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物构想));
         if (canTargetObjects != null && PictomancerRotationEntry.QT.GetQt(QTKey.智能AOE))
         {
-            slot.Add(new Spell(Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物构想1), canTargetObjects));
+            slot.Add(new Spell(Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物构想), canTargetObjects));
         }
         else
         {
-            slot.Add(Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物构想1).GetSpell());
+            slot.Add(Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物构想).GetSpell());
         }
 
     }

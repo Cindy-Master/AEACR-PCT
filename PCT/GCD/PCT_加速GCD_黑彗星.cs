@@ -45,10 +45,7 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -8;
             }
-            if (PictomancerRotationEntry.QT.GetQt(QTKey.团辅期乱打))
-            {
-                return -8;
-            }
+
 
             if (!Core.Me.HasAura(PCT_Data.Buffs.黑彗星buff))
             {
@@ -67,6 +64,26 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -2;
             }
+            if (!Core.Resolve<JobApi_Pictomancer>().生物画 &&
+                Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物彩绘) != PCT_Data.Spells.动物彩绘 &&
+        PictomancerRotationEntry.QT.GetQt(QTKey.动物彩绘) &&
+        PictomancerRotationEntry.QT.GetQt(QTKey.死都得画))
+            {
+                return -7;
+            }
+
+            // 风景画判断
+
+
+            // 武器画相关判断
+            if (!Core.Resolve<JobApi_Pictomancer>().武器画 &&
+                Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘) != PCT_Data.Spells.武器彩绘 &&
+                PictomancerRotationEntry.QT.GetQt(QTKey.武器彩绘) &&
+                PictomancerRotationEntry.QT.GetQt(QTKey.死都得画))
+            {
+                return -9;
+            }
+
             if ((PCT_Data.Spells.黑彗星).GetSpell().IsReadyWithCanCast() && (PCT_Data.Spells.反转).GetSpell().IsReadyWithCanCast() && !Core.Me.HasAura(PCT_Data.Buffs.长Buff) && PictomancerRotationEntry.QT.GetQt(QTKey.反转))
             {
                 return 4;
@@ -75,6 +92,7 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -13;
             }
+
 
 
             return 0;

@@ -3,6 +3,7 @@ using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
+using AEAssist.JobApi;
 using AEAssist.MemoryApi;
 using Cindy_Master.PCT.Data;
 using Cindy_Master.PCT.Setting;
@@ -20,10 +21,6 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -1;
             }
-            if (PictomancerRotationEntry.QT.GetQt(QTKey.团辅期乱打))
-            {
-                return -2;
-            }
 
 
             if (!Core.Me.HasAura(PCT_Data.Buffs.锤子预备))
@@ -40,6 +37,25 @@ namespace Cindy_Master.PCT.GCD
                 return -5;
             }
 
+            if (!Core.Resolve<JobApi_Pictomancer>().生物画 &&
+                Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物彩绘) != PCT_Data.Spells.动物彩绘 &&
+        PictomancerRotationEntry.QT.GetQt(QTKey.动物彩绘) &&
+        PictomancerRotationEntry.QT.GetQt(QTKey.死都得画))
+            {
+                return -7;
+            }
+
+            // 风景画判断
+
+
+            // 武器画相关判断
+            if (!Core.Resolve<JobApi_Pictomancer>().武器画 &&
+                Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘) != PCT_Data.Spells.武器彩绘 &&
+                PictomancerRotationEntry.QT.GetQt(QTKey.武器彩绘) &&
+                PictomancerRotationEntry.QT.GetQt(QTKey.死都得画))
+            {
+                return -9;
+            }
 
 
 

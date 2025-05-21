@@ -223,8 +223,8 @@ namespace Cindy_Master.PCT
             PictomancerRotationEntry.QT.AddQt(QTKey.智能AOE, true);
             PictomancerRotationEntry.QT.AddQt(QTKey.测112, false);
             PictomancerRotationEntry.QT.AddQt(QTKey.倾泻资源, false);
-            PictomancerRotationEntry.QT.AddQt(QTKey.优先画画, false);
-            PictomancerRotationEntry.QT.AddQt(QTKey.团辅期乱打, false);
+            PictomancerRotationEntry.QT.AddQt(QTKey.优先画画, false, "团辅期内不生效");
+            PictomancerRotationEntry.QT.AddQt(QTKey.死都得画, false, "团辅期内生效");
             PictomancerRotationEntry.QT.AddQt(QTKey.快死不爆, true, "影响团辅和锤子构想");
 
 

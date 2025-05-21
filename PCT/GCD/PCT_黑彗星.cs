@@ -28,24 +28,27 @@ public class PCT_黑彗星 : ISlotResolver
         }
         // 动物彩绘相关判断
         if (!Core.Resolve<JobApi_Pictomancer>().生物画 &&
-            PictomancerRotationEntry.QT.GetQt(QTKey.动物彩绘) &&
-            PictomancerRotationEntry.QT.GetQt(QTKey.优先画画))
+             Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物彩绘) != PCT_Data.Spells.动物彩绘 &&
+             PictomancerRotationEntry.QT.GetQt(QTKey.动物彩绘) &&
+             (PictomancerRotationEntry.QT.GetQt(QTKey.优先画画) || PictomancerRotationEntry.QT.GetQt(QTKey.死都得画)))
         {
             return -7;
         }
 
         // 风景画判断
         if (!Core.Resolve<JobApi_Pictomancer>().风景画 &&
+            Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景彩绘) != PCT_Data.Spells.风景彩绘 &&
             PictomancerRotationEntry.QT.GetQt(QTKey.风景彩绘) &&
-            PictomancerRotationEntry.QT.GetQt(QTKey.优先画画))
+             (PictomancerRotationEntry.QT.GetQt(QTKey.优先画画) || PictomancerRotationEntry.QT.GetQt(QTKey.死都得画)))
         {
             return -8;
         }
 
         // 武器画相关判断
         if (!Core.Resolve<JobApi_Pictomancer>().武器画 &&
+            Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘) != PCT_Data.Spells.武器彩绘 &&
             PictomancerRotationEntry.QT.GetQt(QTKey.武器彩绘) &&
-            PictomancerRotationEntry.QT.GetQt(QTKey.优先画画))
+            (PictomancerRotationEntry.QT.GetQt(QTKey.优先画画) || PictomancerRotationEntry.QT.GetQt(QTKey.死都得画)))
         {
             return -9;
         }

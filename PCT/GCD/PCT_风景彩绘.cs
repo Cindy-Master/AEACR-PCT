@@ -47,7 +47,7 @@ namespace Cindy_Master.PCT.GCD
 
             double userCooldownThreshold = PCTSettings.Instance.风景彩绘CD阈值;
 
-            if (!PictomancerRotationEntry.QT.GetQt(QTKey.优先画画) && 风景构想Cooldown >= userCooldownThreshold && PictomancerRotationEntry.QT.GetQt(QTKey.基础连) && !PictomancerRotationEntry.QT.GetQt(QTKey.测112))
+            if ((!PictomancerRotationEntry.QT.GetQt(QTKey.优先画画) || !PictomancerRotationEntry.QT.GetQt(QTKey.死都得画)) && 风景构想Cooldown >= userCooldownThreshold && PictomancerRotationEntry.QT.GetQt(QTKey.基础连) && !PictomancerRotationEntry.QT.GetQt(QTKey.测112))
             {
                 return -3;
             }
@@ -55,7 +55,7 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -4;
             }
-            if (Core.Me.HasAura(PCT_Data.Buffs.星空))
+            if (Core.Me.HasAura(PCT_Data.Buffs.星空) && !PictomancerRotationEntry.QT.GetQt(QTKey.死都得画))
             {
                 return -5;
             }
