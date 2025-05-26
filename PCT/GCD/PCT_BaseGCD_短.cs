@@ -16,6 +16,10 @@ public class PCT_BaseGCD_短 : ISlotResolver
 {
     public int Check()
     {
+        if (!(Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.火炎)).GetSpell().IsReadyWithCanCast())
+        {
+            return -2;
+        }
 
         if (!PictomancerRotationEntry.QT.GetQt(QTKey.基础连))
         {
@@ -28,11 +32,8 @@ public class PCT_BaseGCD_短 : ISlotResolver
                 return -1;
             }
         }
-        if (!(Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.火炎)).GetSpell().IsReadyWithCanCast())
-        {
-            return -2;
-        }
-        if (Helper.上一个能力技能() == PCT_Data.Spells.星空)
+
+        if (Helper.上一个能力技能() == PCT_Data.Spells.星空 && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想))
         {
             return -3;
         }

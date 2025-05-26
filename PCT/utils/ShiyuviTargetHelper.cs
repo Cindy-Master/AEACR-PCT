@@ -940,4 +940,238 @@ public class ShiyuviTargetHelper
         // 判断是否在扇形角度范围内
         return Math.Acos(dotProduct) <= angleRadians;
     }
+
+    /// <summary>
+    /// 获取周围敌人的目标列表
+    /// </summary>
+    /// <param name="radius">检查半径，默认30米</param>
+    /// <param name="center">检查中心点，默认为玩家</param>
+    /// <param name="includeDeadTargets">是否包含死亡目标，默认false</param>
+    /// <param name="removeDuplicates">是否去除重复目标，默认true</param>
+    /// <returns>敌人目标的列表</returns>
+    public static List<IBattleChara> GetNearbyEnemiesTargets(float radius = 30f, IBattleChara center = null,
+        bool includeDeadTargets = false, bool removeDuplicates = true)
+    {
+        // 如果没有指定中心点，默认使用玩家
+        if (center == null)
+        {
+            center = Core.Me;
+        }
+
+        // 安全检查：确保中心点有效
+        if (center == null || !center.IsValid())
+        {
+            return new List<IBattleChara>();
+        }
+
+        // 获取指定范围内的所有敌对目标
+        var nearbyEnemies = Data.AllHostileTargets?
+            .Where(enemy =>
+                enemy != null &&
+                enemy.IsValid() &&
+                Vector3.Distance(enemy.Position, center.Position) <= radius)
+            .ToList() ?? new List<IBattleChara>();
+
+        // 存储敌人的目标
+        var enemyTargets = new List<IBattleChara>();
+
+        // 遍历所有附近的敌人，获取它们的目标
+        foreach (var enemy in nearbyEnemies)
+        {
+            var target = enemy.GetCurrTarget();
+
+            // 检查目标是否有效
+            if (target != null && target.IsValid() && target.IsTargetable)
+            {
+                // 根据参数决定是否包含死亡目标
+                if (includeDeadTargets || !target.IsDead)
+                {
+                    enemyTargets.Add(target);
+                }
+            }
+        }
+
+        // 根据参数决定是否去除重复目标
+        if (removeDuplicates)
+        {
+            enemyTargets = enemyTargets.Distinct().ToList();
+        }
+
+        return enemyTargets;
+    }
+
+    /// <summary>
+    /// 获取周围敌人攻击的队友列表
+    /// </summary>
+    /// <param name="radius">检查半径，默认30米</param>
+    /// <param name="center">检查中心点，默认为玩家</param>
+    /// <returns>被敌人攻击的队友列表</returns>
+    public static List<IBattleChara> GetNearbyEnemiesTargetingAllies(float radius = 30f, IBattleChara center = null)
+    {
+        var enemyTargets = GetNearbyEnemiesTargets(radius, center, false, true);
+
+        // 获取所有队友
+        var allAllies = new List<IBattleChara> { Core.Me };
+        allAllies.AddRange(PartyHelper.CastableAlliesWithin30);
+
+        // 过滤出被攻击的队友
+        return enemyTargets.Where(target => allAllies.Contains(target)).ToList();
+    }
+
+    /// <summary>
+    /// 统计周围敌人攻击指定目标的数量
+    /// </summary>
+    /// <param name="targetToCheck">要检查的目标</param>
+    /// <param name="radius">检查半径，默认30米</param>
+    /// <param name="center">检查中心点，默认为玩家</param>
+    /// <returns>攻击指定目标的敌人数量</returns>
+    public static int CountEnemiesTargeting(IBattleChara targetToCheck, float radius = 30f, IBattleChara center = null)
+    {
+        if (targetToCheck == null || !targetToCheck.IsValid())
+        {
+            return 0;
+        }
+
+        // 如果没有指定中心点，默认使用玩家
+        if (center == null)
+        {
+            center = Core.Me;
+        }
+
+        // 安全检查：确保中心点有效
+        if (center == null || !center.IsValid())
+        {
+            return 0;
+        }
+
+        // 获取指定范围内的所有敌对目标
+        var nearbyEnemies = Data.AllHostileTargets?
+            .Where(enemy =>
+                enemy != null &&
+                enemy.IsValid() &&
+                Vector3.Distance(enemy.Position, center.Position) <= radius)
+            .ToList() ?? new List<IBattleChara>();
+
+        // 统计攻击指定目标的敌人数量
+        int count = 0;
+        foreach (var enemy in nearbyEnemies)
+        {
+            var target = enemy.GetCurrTarget();
+            if (target != null && target.IsValid() && target.NameId == targetToCheck.NameId)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    /// <summary>
+    /// 获取被最多敌人攻击的目标
+    /// </summary>
+    /// <param name="radius">检查半径，默认30米</param>
+    /// <param name="center">检查中心点，默认为玩家</param>
+    /// <returns>被最多敌人攻击的目标，如果没有则返回null</returns>
+    public static IBattleChara GetMostTargetedAlly(float radius = 30f, IBattleChara center = null)
+    {
+        var enemyTargets = GetNearbyEnemiesTargetingAllies(radius, center);
+
+        if (!enemyTargets.Any())
+        {
+            return null;
+        }
+
+        // 统计每个目标被攻击的次数
+        var targetCounts = enemyTargets
+            .GroupBy(target => target.NameId)
+            .Select(group => new { Target = group.First(), Count = group.Count() })
+            .OrderByDescending(x => x.Count)
+            .ToList();
+
+        return targetCounts.FirstOrDefault()?.Target;
+    }
+
+    /// <summary>
+    /// 检查指定目标是否被敌人攻击
+    /// </summary>
+    /// <param name="targetToCheck">要检查的目标</param>
+    /// <param name="radius">检查半径，默认30米</param>
+    /// <param name="center">检查中心点，默认为玩家</param>
+    /// <returns>如果被攻击返回true，否则返回false</returns>
+    public static bool IsTargetBeingAttacked(IBattleChara targetToCheck, float radius = 30f, IBattleChara center = null)
+    {
+        return CountEnemiesTargeting(targetToCheck, radius, center) > 0;
+    }
+
+    /// <summary>
+    /// 如果周围指定距离的敌人都没有目标，则返回最近的敌人
+    /// </summary>
+    /// <param name="radius">检查半径，默认15米</param>
+    /// <param name="center">检查中心点，默认为玩家</param>
+    /// <param name="excludeBoss">是否排除Boss，默认false</param>
+    /// <param name="onlyTargetable">是否只考虑可目标化的敌人，默认true</param>
+    /// <returns>如果所有敌人都没有目标则返回最近的敌人，否则返回null</returns>
+    public static IBattleChara GetNearestEnemyIfNoTargets(float radius = 25f, IBattleChara center = null,
+        bool excludeBoss = false, bool onlyTargetable = true)
+    {
+        // 如果没有指定中心点，默认使用玩家
+        if (center == null)
+        {
+            center = Core.Me;
+        }
+
+        // 安全检查：确保中心点有效
+        if (center == null || !center.IsValid())
+        {
+            return null;
+        }
+
+        // 获取指定范围内的所有敌对目标
+        var nearbyEnemies = Data.AllHostileTargets?
+            .Where(enemy =>
+                enemy != null &&
+                enemy.IsValid() &&
+                !enemy.IsDead &&
+                Vector3.Distance(enemy.Position, center.Position) <= radius)
+            .ToList() ?? new List<IBattleChara>();
+
+        // 根据参数过滤敌人
+        if (onlyTargetable)
+        {
+            nearbyEnemies = nearbyEnemies.Where(e => e.IsTargetable).ToList();
+        }
+
+        if (excludeBoss)
+        {
+            nearbyEnemies = nearbyEnemies.Where(e => !e.IsBoss()).ToList();
+        }
+
+        // 如果没有附近的敌人，返回null
+        if (!nearbyEnemies.Any())
+        {
+            return null;
+        }
+
+        // 检查是否所有敌人都没有目标
+        bool allEnemiesHaveNoTarget = true;
+        foreach (var enemy in nearbyEnemies)
+        {
+            var target = enemy.GetCurrTarget();
+            if (target != null && target.IsValid() && !target.IsDead)
+            {
+                allEnemiesHaveNoTarget = false;
+                break;
+            }
+        }
+
+        // 如果所有敌人都没有目标，返回最近的敌人
+        if (allEnemiesHaveNoTarget)
+        {
+            return nearbyEnemies
+                .OrderBy(enemy => Vector3.Distance(enemy.Position, center.Position))
+                .FirstOrDefault();
+        }
+
+        return null; // 如果有敌人有目标，返回null
+    }
 }

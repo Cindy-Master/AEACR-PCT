@@ -8,7 +8,10 @@ using AEAssist.MemoryApi;
 using Cindy_Master.PCT;
 using Cindy_Master.PCT.Data;
 using Cindy_Master.PCT.Setting;
+using FFXIVClientStructs.FFXIV.Client.Game;
+using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using PCT.utils.Helper;
+using Shiyuvi3._0;
 namespace Cinndy_Master.PCT
 {
     public class PictomancerRotationEventHandler : IRotationEventHandler
@@ -40,6 +43,10 @@ namespace Cinndy_Master.PCT
         public static bool manualOverride = false;
         private int originalCastingSpellSuccessRemainTiming;
         private bool originalNoClipGCD3; // 新增字段用于存储原始 NoClipGCD3 状态
+        private DateTime lastTargetCheck = DateTime.MinValue;
+        private static DateTime lastItemUseTime = DateTime.MinValue;
+
+
 
         public static void Stop()
         {
@@ -78,6 +85,22 @@ namespace Cinndy_Master.PCT
                 Helper.Reset();
             }
             PCTSettings.Instance.SaveQtStates(PictomancerRotationEntry.QT);
+            unsafe
+            {
+                InventoryManager* inventoryManager = InventoryManager.Instance();
+
+                // 检查是否满足使用条件且距离上次使用已超过3秒
+                if (UIState.Instance()->Buddy.CompanionInfo.TimeLeft < 30 &&
+                    !Helper.自身是否在读条() &&
+                PCTSettings.Instance.fate模式 &&
+                    (DateTime.Now - lastItemUseTime).TotalSeconds >= 3.0 &&
+                   inventoryManager->GetInventoryItemCount(4868) > 0)
+                {
+                    ItemHelper.UseItem(4868, false);
+                    // 更新上次使用时间
+                    lastItemUseTime = DateTime.Now;
+                }
+            }
         }
 
         public async Task OnNoTarget()
@@ -140,9 +163,66 @@ namespace Cinndy_Master.PCT
                     LogHelper.Info("脱战风景画");
                 }
 
-                await Task.CompletedTask;
-            }
 
+            }
+            if (PictomancerRotationEntry.QT.GetQt(QTKey.自动绘画) && PCTSettings.Instance.fate模式 && !Helper.是否在副本中())
+            {
+                if (!Core.Resolve<JobApi_Pictomancer>().武器画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘)).GetSpell().IsReadyWithCanCast())
+                {
+                    await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘).GetSpell().Cast();
+                    LogHelper.Info("脱战武器画");
+                }
+
+                if (!Core.Resolve<JobApi_Pictomancer>().生物画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物彩绘)).GetSpell().IsReadyWithCanCast())
+                {
+                    await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.动物彩绘).GetSpell().Cast();
+                    LogHelper.Info("脱战动物画");
+                }
+
+                if (!Core.Resolve<JobApi_Pictomancer>().风景画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景彩绘)).GetSpell().IsReadyWithCanCast())
+                {
+                    await Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景彩绘).GetSpell().Cast();
+                    LogHelper.Info("脱战风景画");
+                }
+                unsafe
+                {
+                    InventoryManager* inventoryManager = InventoryManager.Instance();
+
+                    // 检查是否满足使用条件且距离上次使用已超过3秒
+                    if (UIState.Instance()->Buddy.CompanionInfo.TimeLeft < 30 &&
+                        !Helper.自身是否在读条() &&
+                    PCTSettings.Instance.fate模式 &&
+                        (DateTime.Now - lastItemUseTime).TotalSeconds >= 3.0 &&
+                       inventoryManager->GetInventoryItemCount(4868) > 0)
+                    {
+                        ItemHelper.UseItem(4868, false);
+                        // 更新上次使用时间
+                        lastItemUseTime = DateTime.Now;
+                    }
+                }
+                if ((DateTime.Now - lastTargetCheck).TotalSeconds >= 3)
+                {
+                    // 最简单的调用 - 使用默认参数（15米范围，以玩家为中心）
+                    var nearestEnemy = ShiyuviTargetHelper.GetNearestEnemyIfNoTargets();
+                    lastTargetCheck = DateTime.Now;
+                    if (nearestEnemy != null)
+                    {
+                        // 找到了一个没有目标的最近敌人
+                        // 可以对这个敌人进行攻击或其他操作
+                        if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.火炎).GetSpell().IsReadyWithCanCast())
+                        {
+
+                            await new Spell(Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.火炎), nearestEnemy).Cast();
+                        }
+                        if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.冰结).GetSpell().IsReadyWithCanCast())
+                        {
+                            await new Spell(Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.冰结), nearestEnemy).Cast();
+
+                        }
+                    }
+                }
+            }
+            await Task.CompletedTask;
         }
 
         public void AfterSpell(Slot slot, Spell spell)
@@ -177,6 +257,7 @@ namespace Cinndy_Master.PCT
                 //PlayerOptions.Instance.Stop = true;
 
             }
+
             if (Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.长Buff) == 1 && PictomancerRotationEntry.QT.GetQt(QTKey.测112) && Core.Me.HasAura(PCT_Data.Buffs.蓝红))
             {
                 PictomancerRotationEntry.QT.SetQt(QTKey.测112, false);
@@ -251,6 +332,22 @@ namespace Cinndy_Master.PCT
         public void OnTerritoryChanged()
         {
             PCTSettings.Instance.SaveQtStates(PictomancerRotationEntry.QT);
+            unsafe
+            {
+                InventoryManager* inventoryManager = InventoryManager.Instance();
+
+                // 检查是否满足使用条件且距离上次使用已超过3秒
+                if (UIState.Instance()->Buddy.CompanionInfo.TimeLeft < 30 &&
+                    !Helper.自身是否在读条() &&
+                PCTSettings.Instance.fate模式 &&
+                    (DateTime.Now - lastItemUseTime).TotalSeconds >= 3.0 &&
+                   inventoryManager->GetInventoryItemCount(4868) > 0)
+                {
+                    ItemHelper.UseItem(4868, false);
+                    // 更新上次使用时间
+                    lastItemUseTime = DateTime.Now;
+                }
+            }
         }
     }
 }

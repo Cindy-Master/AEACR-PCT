@@ -57,7 +57,7 @@ public class PCT_动物构想 : ISlotResolver
         }
 
         int requiredLayer = PCTSettings.Instance.动物层数 + 1;
-        if (生物构想Charges < requiredLayer - 0.2 && !Core.Me.HasAura(PCT_Data.Buffs.星空) && !PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源))
+        if (生物构想Charges < requiredLayer - 0.2 && !Core.Me.HasAura(PCT_Data.Buffs.星空) && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && !PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源))
         {
             return -6;
         }

@@ -5,6 +5,7 @@ using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
 using Cindy_Master.PCT.Data;
+using Cindy_Master.PCT.Setting;
 
 namespace Cindy_Master.PCT.Ability
 {
@@ -16,10 +17,7 @@ namespace Cindy_Master.PCT.Ability
             {
                 return -3;
             }
-            if (!TargetHelper.targetCastingIsBossAOE(Core.Me.GetCurrTarget(), 500))
-            {
-                return -1;
-            }
+
             if (GCDHelper.GetGCDCooldown() < 150)
             {
                 return -2;
@@ -31,6 +29,14 @@ namespace Cindy_Master.PCT.Ability
             if (Core.Me.HasAura(PCT_Data.Buffs.扩散蛋))
             {
                 return -2;
+            }
+            if (!TargetHelper.targetCastingIsBossAOE(Core.Me.GetCurrTarget(), 500) && !PCTSettings.Instance.fate模式)
+            {
+                return -1;
+            }
+            if (!TargetHelper.targetCastingIsBossAOE(Core.Me.GetCurrTarget(), 500) && Core.Me.CurrentHpPercent() >= 0.3)
+            {
+                return -1;
             }
             return 0;
 

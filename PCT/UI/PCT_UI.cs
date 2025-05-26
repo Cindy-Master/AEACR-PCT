@@ -102,6 +102,7 @@ namespace Cindy_Master.PCT.Ui
                     {
                         PCTSettings.Instance.日随模式 = true;
                         PCTSettings.Instance.高难模式 = false;
+                        PCTSettings.Instance.fate模式 = false;
                         PCTSettings.Instance.Save();
                     }
                 }
@@ -119,6 +120,7 @@ namespace Cindy_Master.PCT.Ui
                     {
                         PCTSettings.Instance.高难模式 = true;
                         PCTSettings.Instance.日随模式 = false;
+                        PCTSettings.Instance.fate模式 = false;
                         PCTSettings.Instance.Save();
                     }
                 }
@@ -126,6 +128,24 @@ namespace Cindy_Master.PCT.Ui
                 {
                     ImGui.BeginTooltip();
                     ImGui.Text("适合高难度副本的模式，会执行精确的起手");
+                    ImGui.EndTooltip();
+                }
+
+                bool 狩猎模式 = PCTSettings.Instance.fate模式;
+                if (ImGui.Checkbox("狩猎模式", ref 狩猎模式))
+                {
+                    if (狩猎模式)
+                    {
+                        PCTSettings.Instance.fate模式 = true;
+                        PCTSettings.Instance.日随模式 = false;
+                        PCTSettings.Instance.高难模式 = false;
+                        PCTSettings.Instance.Save();
+                    }
+                }
+                if (ImGui.IsItemHovered())
+                {
+                    ImGui.BeginTooltip();
+                    ImGui.Text("适合野外狩猎和怪物讨伐的模式，专注于快速清理小怪");
                     ImGui.EndTooltip();
                 }
 
@@ -770,7 +790,8 @@ namespace Cindy_Master.PCT.Ui
 
                 ImGui.Text($"当前限制的ogcd: {AI.Instance.BattleData.CurrGcdAbilityCount}");
 
-
+                ImGui.Text($"当前血量: {Core.Me.CurrentHpPercent()}");
+                ImGui.Text($"当前血量: {Core.Me.CurrentHpPercent() <= 0.4}");
 
                 ImGui.Text($"加速层数: {Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速)}");
             }

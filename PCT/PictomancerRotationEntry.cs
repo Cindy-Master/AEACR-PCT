@@ -114,7 +114,7 @@ namespace Cindy_Master.PCT
 
         IOpener? GetOpener(uint level)
         {
-            if (PCTSettings.Instance.日随模式)
+            if (PCTSettings.Instance.日随模式 || PCTSettings.Instance.fate模式)
             {
                 return null;
             }
