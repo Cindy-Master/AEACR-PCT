@@ -46,6 +46,11 @@ namespace Cinndy_Master.PCT
         private DateTime lastTargetCheck = DateTime.MinValue;
         private static DateTime lastItemUseTime = DateTime.MinValue;
 
+        // 定义包含多个terrId的数组
+        uint[] restrictedTerrIds = new uint[] { 144, 388, 129, 132, 130, 963 }; // 根据实际需要修改这些值
+
+        // 检查当前terrId是否不在数组中
+        uint currentTerrId = Core.Resolve<MemApiZoneInfo>().GetCurrTerrId();
 
 
         public static void Stop()
@@ -85,20 +90,23 @@ namespace Cinndy_Master.PCT
                 Helper.Reset();
             }
             PCTSettings.Instance.SaveQtStates(PictomancerRotationEntry.QT);
-            unsafe
+            if (PCTSettings.Instance.fate模式 && !Helper.是否在副本中() && !restrictedTerrIds.Any(id => id == currentTerrId))
             {
-                InventoryManager* inventoryManager = InventoryManager.Instance();
-
-                // 检查是否满足使用条件且距离上次使用已超过3秒
-                if (UIState.Instance()->Buddy.CompanionInfo.TimeLeft < 30 &&
-                    !Helper.自身是否在读条() &&
-                PCTSettings.Instance.fate模式 &&
-                    (DateTime.Now - lastItemUseTime).TotalSeconds >= 3.0 &&
-                   inventoryManager->GetInventoryItemCount(4868) > 0)
+                unsafe
                 {
-                    ItemHelper.UseItem(4868, false);
-                    // 更新上次使用时间
-                    lastItemUseTime = DateTime.Now;
+                    InventoryManager* inventoryManager = InventoryManager.Instance();
+
+                    // 检查是否满足使用条件且距离上次使用已超过3秒
+                    if (UIState.Instance()->Buddy.CompanionInfo.TimeLeft < 30 &&
+                        !Helper.自身是否在读条() &&
+                    PCTSettings.Instance.fate模式 &&
+                        (DateTime.Now - lastItemUseTime).TotalSeconds >= 3.0 &&
+                       inventoryManager->GetInventoryItemCount(4868) > 0)
+                    {
+                        ItemHelper.UseItem(4868, false);
+                        // 更新上次使用时间
+                        lastItemUseTime = DateTime.Now;
+                    }
                 }
             }
         }
@@ -165,7 +173,7 @@ namespace Cinndy_Master.PCT
 
 
             }
-            if (PictomancerRotationEntry.QT.GetQt(QTKey.自动绘画) && PCTSettings.Instance.fate模式 && !Helper.是否在副本中())
+            if (PictomancerRotationEntry.QT.GetQt(QTKey.自动绘画) && PCTSettings.Instance.fate模式 && !Helper.是否在副本中() && !restrictedTerrIds.Any(id => id == currentTerrId))
             {
                 if (!Core.Resolve<JobApi_Pictomancer>().武器画 && (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.武器彩绘)).GetSpell().IsReadyWithCanCast())
                 {
@@ -332,20 +340,23 @@ namespace Cinndy_Master.PCT
         public void OnTerritoryChanged()
         {
             PCTSettings.Instance.SaveQtStates(PictomancerRotationEntry.QT);
-            unsafe
+            if (PCTSettings.Instance.fate模式 && !Helper.是否在副本中() && !restrictedTerrIds.Any(id => id == currentTerrId))
             {
-                InventoryManager* inventoryManager = InventoryManager.Instance();
-
-                // 检查是否满足使用条件且距离上次使用已超过3秒
-                if (UIState.Instance()->Buddy.CompanionInfo.TimeLeft < 30 &&
-                    !Helper.自身是否在读条() &&
-                PCTSettings.Instance.fate模式 &&
-                    (DateTime.Now - lastItemUseTime).TotalSeconds >= 3.0 &&
-                   inventoryManager->GetInventoryItemCount(4868) > 0)
+                unsafe
                 {
-                    ItemHelper.UseItem(4868, false);
-                    // 更新上次使用时间
-                    lastItemUseTime = DateTime.Now;
+                    InventoryManager* inventoryManager = InventoryManager.Instance();
+
+                    // 检查是否满足使用条件且距离上次使用已超过3秒
+                    if (UIState.Instance()->Buddy.CompanionInfo.TimeLeft < 30 &&
+                        !Helper.自身是否在读条() &&
+                    PCTSettings.Instance.fate模式 &&
+                        (DateTime.Now - lastItemUseTime).TotalSeconds >= 3.0 &&
+                       inventoryManager->GetInventoryItemCount(4868) > 0)
+                    {
+                        ItemHelper.UseItem(4868, false);
+                        // 更新上次使用时间
+                        lastItemUseTime = DateTime.Now;
+                    }
                 }
             }
         }

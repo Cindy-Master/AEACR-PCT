@@ -3,6 +3,7 @@ using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.View.JobView;
 using AEAssist.Extension;
 using AEAssist.Helper;
+using AEAssist.MemoryApi;
 using Cindy_Master.PCT.Data;
 using Cindy_Master.PCT.Setting;
 using Cindy_Master.Util;
@@ -791,7 +792,7 @@ namespace Cindy_Master.PCT.Ui
                 ImGui.Text($"当前限制的ogcd: {AI.Instance.BattleData.CurrGcdAbilityCount}");
 
                 ImGui.Text($"当前血量: {Core.Me.CurrentHpPercent()}");
-                ImGui.Text($"当前血量: {Core.Me.CurrentHpPercent() <= 0.4}");
+                ImGui.Text($"当前地图Terrid: {Core.Resolve<MemApiZoneInfo>().GetCurrTerrId()}");
 
                 ImGui.Text($"加速层数: {Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速)}");
             }
