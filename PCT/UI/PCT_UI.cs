@@ -146,7 +146,7 @@ namespace Cindy_Master.PCT.Ui
                 if (ImGui.IsItemHovered())
                 {
                     ImGui.BeginTooltip();
-                    ImGui.Text("适合野外狩猎和怪物讨伐的模式，专注于快速清理小怪");
+                    ImGui.Text("适合野外狩猎和怪物讨伐的模式，专注于快速清理小怪, 记得把倾泻资源QT打开(关闭自动重置QT)");
                     ImGui.EndTooltip();
                 }
 

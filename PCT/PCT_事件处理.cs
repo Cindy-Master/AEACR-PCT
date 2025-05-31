@@ -215,8 +215,7 @@ namespace Cinndy_Master.PCT
                     lastTargetCheck = DateTime.Now;
                     if (nearestEnemy != null)
                     {
-                        // 找到了一个没有目标的最近敌人
-                        // 可以对这个敌人进行攻击或其他操作
+
                         if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.火炎).GetSpell().IsReadyWithCanCast())
                         {
 
