@@ -1112,7 +1112,7 @@ public class ShiyuviTargetHelper
     /// <param name="onlyTargetable">是否只考虑可目标化的敌人，默认true</param>
     /// <returns>如果所有敌人都没有目标则返回最近的敌人，否则返回null</returns>
     public static IBattleChara GetNearestEnemyIfNoTargets(float radius = 25f, IBattleChara center = null,
-        bool excludeBoss = false, bool onlyTargetable = true)
+      bool excludeBoss = false, bool onlyTargetable = true)
     {
         // 如果没有指定中心点，默认使用玩家
         if (center == null)
@@ -1152,26 +1152,21 @@ public class ShiyuviTargetHelper
             return null;
         }
 
-        // 检查是否所有敌人都没有目标
-        bool allEnemiesHaveNoTarget = true;
-        foreach (var enemy in nearbyEnemies)
+        // 筛选出没有目标的敌人
+        var enemiesWithNoTarget = nearbyEnemies.Where(enemy =>
         {
             var target = enemy.GetCurrTarget();
-            if (target != null && target.IsValid() && !target.IsDead)
-            {
-                allEnemiesHaveNoTarget = false;
-                break;
-            }
-        }
+            return target == null || !target.IsValid() || target.IsDead;
+        }).ToList();
 
-        // 如果所有敌人都没有目标，返回最近的敌人
-        if (allEnemiesHaveNoTarget)
+        // 返回无目标敌人中最近的一个
+        if (enemiesWithNoTarget.Any())
         {
-            return nearbyEnemies
+            return enemiesWithNoTarget
                 .OrderBy(enemy => Vector3.Distance(enemy.Position, center.Position))
                 .FirstOrDefault();
         }
 
-        return null; // 如果有敌人有目标，返回null
+        return null; // 如果所有敌人都有目标，返回null
     }
 }

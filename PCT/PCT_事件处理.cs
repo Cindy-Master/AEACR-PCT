@@ -213,8 +213,17 @@ namespace Cinndy_Master.PCT
                     // 最简单的调用 - 使用默认参数（15米范围，以玩家为中心）
                     var nearestEnemy = ShiyuviTargetHelper.GetNearestEnemyIfNoTargets();
                     lastTargetCheck = DateTime.Now;
-                    if (nearestEnemy != null)
+                    if (nearestEnemy != null && !Core.Me.IsMoving())
                     {
+
+                        if (Core.Me.HasAura(PCT_Data.Buffs.锤子预备) && PictomancerRotationEntry.QT.GetQt(QTKey.锤子))
+                        {
+                            await new Spell(Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.锤1), nearestEnemy).Cast();
+                        }
+                        if (Core.Resolve<JobApi_Pictomancer>().豆子 != 0 && !Core.Me.HasAura(PCT_Data.Buffs.黑彗星buff))
+                        {
+                            await new Spell(Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.白神圣), nearestEnemy).Cast();
+                        }
 
                         if (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.火炎).GetSpell().IsReadyWithCanCast())
                         {

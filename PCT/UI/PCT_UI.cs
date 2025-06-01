@@ -9,6 +9,7 @@ using Cindy_Master.PCT.Setting;
 using Cindy_Master.Util;
 using ImGuiNET;
 using PCT.utils.Helper;
+using Shiyuvi3._0;
 using System.Numerics;
 
 namespace Cindy_Master.PCT.Ui
@@ -793,6 +794,7 @@ namespace Cindy_Master.PCT.Ui
 
                 ImGui.Text($"当前血量: {Core.Me.CurrentHpPercent()}");
                 ImGui.Text($"当前地图Terrid: {Core.Resolve<MemApiZoneInfo>().GetCurrTerrId()}");
+                ImGui.Text($"当前的锁定目标: {ShiyuviTargetHelper.GetNearestEnemyIfNoTargets()}");
 
                 ImGui.Text($"加速层数: {Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速)}");
             }
