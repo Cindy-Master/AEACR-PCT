@@ -795,6 +795,7 @@ namespace Cindy_Master.PCT.Ui
                 ImGui.Text($"当前血量: {Core.Me.CurrentHpPercent()}");
                 ImGui.Text($"当前地图Terrid: {Core.Resolve<MemApiZoneInfo>().GetCurrTerrId()}");
                 ImGui.Text($"当前的锁定目标: {ShiyuviTargetHelper.GetNearestEnemyIfNoTargets()}");
+                ImGui.Text($"状态: {Core.Resolve<MemApiSpell>().GetActionInRangeOrLoS(PCT_Data.Spells.火炎)}");
 
                 ImGui.Text($"加速层数: {Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速)}");
             }
