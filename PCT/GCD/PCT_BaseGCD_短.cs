@@ -33,7 +33,7 @@ public class PCT_BaseGCD_短 : ISlotResolver
             }
         }
 
-        if (Helper.上一个能力技能() == PCT_Data.Spells.星空 && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想))
+        if (Helper.上一个能力技能() == PCT_Data.Spells.星空 && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && PCTSettings.Instance.高难模式)
         {
             return -3;
         }
