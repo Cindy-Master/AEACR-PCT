@@ -24,6 +24,7 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -20;
             }
+
             if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), PCTSettings.Instance.TTK阈值, false) && PictomancerRotationEntry.QT.GetQt(QTKey.快死不画))
             {
                 return -6;

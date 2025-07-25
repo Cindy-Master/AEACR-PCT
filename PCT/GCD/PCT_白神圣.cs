@@ -29,6 +29,7 @@ namespace Cindy_Master.PCT.GCD
             {
                 return -2;
             }
+
             if (Core.Me.HasAura(PCT_Data.Buffs.黑彗星buff))
             {
                 return -2;

@@ -287,8 +287,8 @@ namespace Cinndy_Master.PCT
 
         public void OnEnterRotation()
         {
-            LogHelper.Print("[Cindy-Master]\n画家ACR 1.6.1 版本");
-            Core.Resolve<MemApiChatMessage>().Toast2("[Cindy-Master]\n画家ACR 1.6.1 版本\n高难模式请勿打开优化GCD偏移选项!!!", 1, 3000);
+            LogHelper.Print("[Cindy-Master]\n画家ACR 1.6.2 版本");
+            Core.Resolve<MemApiChatMessage>().Toast2("[Cindy-Master]\n画家ACR 1.6.2 版本\n高难模式请勿打开优化GCD偏移选项!!!\n", 1, 3000);
 
             if (PCTSettings.Instance.日随模式)
             {

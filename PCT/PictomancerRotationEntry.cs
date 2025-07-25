@@ -12,6 +12,7 @@ using Cindy_Master.PCT.Trigger;
 using Cindy_Master.PCT.Ui;
 using Cindy_Master.Trigger;
 using Cinndy_Master.PCT;
+using PatchouliTC.Common;
 
 namespace Cindy_Master.PCT
 {
@@ -35,17 +36,19 @@ namespace Cindy_Master.PCT
             new SlotResolverData(new PCT_加速GCD_黑彗星(), SlotMode.Gcd),
             new SlotResolverData(new PCT_加速GCD_锤子(), SlotMode.Gcd),
             new SlotResolverData(new PCT_彩虹(), SlotMode.Gcd),
+
             new SlotResolverData(new PCT_加速GCD_基础连长(), SlotMode.Gcd),
             new SlotResolverData(new PCT_加速GCD_基础连短(), SlotMode.Gcd),
+
             new SlotResolverData(new PCT_黑彗星(), SlotMode.Gcd),
             new SlotResolverData(new PCT_动物彩绘(), SlotMode.Gcd),
-            new SlotResolverData(new PCT_锤子(), SlotMode.Gcd),
 
+            new SlotResolverData(new PCT_锤子(), SlotMode.Gcd),
+            new SlotResolverData(new PCT_白神圣(), SlotMode.Gcd),
             new SlotResolverData(new PCT_风景彩绘(), SlotMode.Gcd),
             new SlotResolverData(new PCT_武器彩绘(), SlotMode.Gcd),
             new SlotResolverData(new PCT_BaseGCD_长(), SlotMode.Gcd),
             new SlotResolverData(new PCT_BaseGCD_短(), SlotMode.Gcd),
-            new SlotResolverData(new PCT_白神圣(), SlotMode.Gcd),
             new SlotResolverData(new PCT_即刻(), SlotMode.Gcd),
             new SlotResolverData(new PCT_爆发药(), SlotMode.Gcd),
             new SlotResolverData(new PCT_扩散蛋(), SlotMode.OffGcd),
@@ -98,6 +101,7 @@ namespace Cindy_Master.PCT
             rot.SetRotationEventHandler(new PictomancerRotationEventHandler());
             rot.AddTriggerAction(new PictomancerQtTrigger());
             rot.AddTriggerAction(new PictomancerNewQtTrigger());
+            rot.AddTriggerAction(new PictomancerQuickQtTrigger());
             rot.AddTriggerCondition(new TriggerCondition_PCT量谱());
             rot.AddTriggerCondition(new TriggerCondition_PCT团辅层数());
             rot.AddTriggerCondition(new TriggerCondition_爆发药状态());
@@ -236,6 +240,7 @@ namespace Cindy_Master.PCT
             PictomancerRotationEntry.QT.AddHotkey("爆发药", new HotKeyResolver_Potion());
             PictomancerRotationEntry.QT.AddHotkey("蛋盾", new HotKeyResolver_NormalSpell(PCT_Data.Spells.蛋, SpellTargetType.Self, false));
             PictomancerRotationEntry.QT.AddHotkey("扩散蛋盾", new HotKeyResolver_NormalSpell(PCT_Data.Spells.扩散蛋, SpellTargetType.Self, false));
+            PictomancerRotationEntry.QT.AddHotkey("LB", new HotKeyResolver_法系LB());
 
 
             PCTSettings.Instance.LoadQtStates(QT);

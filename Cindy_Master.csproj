@@ -1,9 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Dalamud.CN.NET.Sdk/12.0.2">
+	
 
-    <PropertyGroup>
+	<PropertyGroup>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-		<Targetframework>net8.0</Targetframework>
+		<Targetframework>net9.0</Targetframework>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
@@ -21,9 +22,6 @@
       </Reference>
       <Reference Include="ECommons">
         <HintPath>G:\AE3.0\AEAssistCNVersion\AEAssist\ECommons.dll</HintPath>
-      </Reference>
-      <Reference Include="FFXIVClientStructs">
-        <HintPath>..\..\..\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\FFXIVClientStructs.dll</HintPath>
       </Reference>
       <Reference Include="ImGui.NET">
         <HintPath>..\..\..\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\ImGui.NET.dll</HintPath>

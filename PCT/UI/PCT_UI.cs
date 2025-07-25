@@ -49,7 +49,7 @@ namespace Cindy_Master.PCT.Ui
             // 版本信息
             DrawSeparator();
             ImGui.PushStyleColor(ImGuiCol.Text, 版本颜色);
-            ImGui.TextWrapped("色魔绘师 v1.6.1");
+            ImGui.TextWrapped("色魔绘师 v1.6.2");
             ImGui.PopStyleColor();
             DrawSeparator();
 
@@ -623,6 +623,8 @@ namespace Cindy_Master.PCT.Ui
                 }
                 ImGui.PushStyleColor(ImGuiCol.Text, 提示颜色);
                 ImGui.Text($"当前层数阈值: {PCTSettings.Instance.多少层打锤子}");
+
+
                 ImGui.PopStyleColor();
                 bool enablebuka = PCTSettings.Instance.不卡模式;
                 if (ImGui.Checkbox("不卡模式 (勾选这个请确认你的网络和动画锁非常流畅 甚至启动了DR的动画锁减少+三插动画锁)否则开星空的时候会微卡 甚至很卡GCD", ref enablebuka))
@@ -796,6 +798,7 @@ namespace Cindy_Master.PCT.Ui
                 ImGui.Text($"当前地图Terrid: {Core.Resolve<MemApiZoneInfo>().GetCurrTerrId()}");
                 ImGui.Text($"当前的锁定目标: {ShiyuviTargetHelper.GetNearestEnemyIfNoTargets()}");
                 ImGui.Text($"状态: {Core.Resolve<MemApiSpell>().GetActionInRangeOrLoS(PCT_Data.Spells.火炎)}");
+                ImGui.Text($"状态: {Core.Me.HasAura(PCT_Data.Buffs.星空)}");
 
                 ImGui.Text($"加速层数: {Helper.目标的指定BUFF层数(Core.Me, PCT_Data.Buffs.加速)}");
             }

@@ -18,7 +18,7 @@ public class PCT_锤子 : ISlotResolver
     {
         var 风景构想Spell = Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.风景构想).GetSpell();
         double 风景构想Cooldown = 风景构想Spell.Cooldown.TotalSeconds;
-
+        var canTargetObjects = ShiyuviTargetHelper.SmartTargetCircleAOE(2, Core.Me.GetCurrTarget(), 25f, 5f, (Core.Resolve<MemApiSpell>().CheckActionChange(PCT_Data.Spells.锤1)));
         if (!PictomancerRotationEntry.QT.GetQt(QTKey.锤子))
         {
             return -8;
@@ -30,6 +30,7 @@ public class PCT_锤子 : ISlotResolver
         {
             return -1;
         }
+
         if (!PictomancerRotationEntry.QT.GetQt(QTKey.倾泻资源) && !Core.Me.IsMoving() && Helper.自身存在Buff大于时间(PCT_Data.Buffs.锤子预备, 15000) && SpellExtension.IsUnlock(PCT_Data.Spells.风景构想) && 风景构想Cooldown >= 20 && !Core.Me.HasAura(PCT_Data.Buffs.星空) && PictomancerRotationEntry.QT.GetQt(QTKey.基础连) && !PictomancerRotationEntry.QT.GetQt(QTKey.测112))
         {
             return -6;

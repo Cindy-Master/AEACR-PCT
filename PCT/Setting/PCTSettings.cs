@@ -106,6 +106,8 @@ namespace Cindy_Master.PCT.Setting
         public bool 奔放模式 = false;
         public bool 日随模式 = true;  // 日随模式，默认启用
         public bool 高难模式 = false; // 高难模式，默认禁用
+        public bool 锤子团伤 = false; // 高难模式，默认禁用
+        public bool 多目标锤子 = false; // 高难模式，默认禁用
 
 
     }
